@@ -6,11 +6,11 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 01:23:03 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/12/01 20:17:06 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2025/12/23 18:51:26 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static uintptr_t	n_count(uintptr_t nb, uintptr_t base_len)
 {

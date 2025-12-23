@@ -6,11 +6,11 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 19:21:03 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/12/01 19:40:28 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2025/12/23 18:51:21 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static bool	print_specifier(const char sp, va_list *ap, int *count,
 		t_flag *flag)

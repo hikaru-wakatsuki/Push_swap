@@ -1,71 +1,103 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   specifier_u.c                                      :+:      :+:    :+:   */
+/*   specifier_x.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 15:28:47 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/10/31 18:48:16 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2025/12/23 18:51:14 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-bool	u_width_print(unsigned int content, int *count, t_flag *flag,
+static bool	hash_print(unsigned int content, int *count, t_flag *flag,
+		char *buffer)
+{
+	if (flag->hash && content)
+	{
+		if (!ft_putstr_printf("0x", count))
+		{
+			free(buffer);
+			return (false);
+		}
+	}
+	return (true);
+}
+
+bool	x_width_print(unsigned int content, int *count, t_flag *flag,
 		char *buffer)
 {
 	int	width;
+	int	hash_count;
 	int	digits;
 	int	flag_width_plus_zero;
 
+	if (flag->hash && content)
+		hash_count = 2;
+	else
+		hash_count = 0;
 	digits = flag_strlen(content, buffer, flag);
 	flag_width_plus_zero = flag->width;
-	if (flag_width_plus_zero > digits && !flag->minus && (!flag->zero
-			|| flag->dot))
+	if (flag_width_plus_zero > digits + hash_count && !flag->minus
+		&& (!flag->zero || flag->dot))
 	{
 		if (flag->precision > digits)
-			width = flag_width_plus_zero - flag->precision;
+			width = flag_width_plus_zero - flag->precision - hash_count;
 		else
-			width = flag_width_plus_zero - digits;
+			width = flag_width_plus_zero - digits - hash_count;
 		if (!space_print_malloc(width, count, buffer))
 			return (false);
 	}
 	return (true);
 }
 
-bool	u_minus_print(unsigned int content, int *count, t_flag *flag,
+bool	x_minus_print(unsigned int content, int *count, t_flag *flag,
 		char *buffer)
 {
 	int	width;
+	int	hash_count;
 	int	digits;
 	int	flag_width_plus_zero;
 
+	if (flag->hash && content)
+		hash_count = 2;
+	else
+		hash_count = 0;
 	digits = flag_strlen(content, buffer, flag);
 	flag_width_plus_zero = flag->width;
-	if (flag_width_plus_zero > digits && flag->minus)
+	if (flag_width_plus_zero > digits + hash_count && flag->minus)
 	{
 		if (flag->precision > digits)
-			width = flag_width_plus_zero - flag->precision;
+			width = flag_width_plus_zero - flag->precision - hash_count;
 		else
-			width = flag_width_plus_zero - digits;
+			width = flag_width_plus_zero - digits - hash_count;
 		if (!space_print_malloc(width, count, buffer))
 			return (false);
 	}
 	return (true);
 }
 
-bool	u_before_print(unsigned int content, int *count, t_flag *flag,
+static bool	x_before_print(unsigned int content, int *count, t_flag *flag,
 		char *buffer)
 {
 	int	digits;
+	int	hash_count;
 
+	if (flag->hash && content)
+		hash_count = 2;
+	else
+		hash_count = 0;
 	digits = flag_strlen(content, buffer, flag);
-	if (!u_width_print(content, count, flag, buffer))
+	if (!x_width_print(content, count, flag, buffer))
+		return (false);
+	if (!hash_print(content, count, flag, buffer))
 		return (false);
 	if (flag->width > digits && !flag->dot && !flag->minus && flag->zero)
 	{
-		if (!zero_print_malloc(flag->width - digits, count, buffer))
+		if (!zero_print_malloc(flag->width - digits - hash_count, count,
+				buffer))
 			return (false);
 	}
 	if (flag->precision > digits && flag->dot)
@@ -76,16 +108,16 @@ bool	u_before_print(unsigned int content, int *count, t_flag *flag,
 	return (true);
 }
 
-bool	u_specifier(unsigned int content, int *count, t_flag *flag)
+bool	x_specifier(unsigned int content, int *count, t_flag *flag)
 {
 	char	*buffer;
 	int		digits;
 
-	buffer = itoa_base((uintptr_t)content, "0123456789");
+	buffer = itoa_base((uintptr_t)content, "0123456789abcdef");
 	if (!buffer)
 		return (false);
 	digits = flag_strlen(content, buffer, flag);
-	if (!u_before_print(content, count, flag, buffer))
+	if (!x_before_print(content, count, flag, buffer))
 		return (false);
 	if (!(!content && flag->dot && !flag->precision))
 	{
@@ -95,7 +127,7 @@ bool	u_specifier(unsigned int content, int *count, t_flag *flag)
 			return (false);
 		}
 	}
-	if (!u_minus_print(content, count, flag, buffer))
+	if (!x_minus_print(content, count, flag, buffer))
 		return (false);
 	free(buffer);
 	return (true);

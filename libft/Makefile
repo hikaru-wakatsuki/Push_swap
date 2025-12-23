@@ -6,7 +6,7 @@
 #    By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 21:01:17 by hwakatsu          #+#    #+#              #
-#    Updated: 2025/12/23 18:35:26 by hwakatsu         ###   ########.fr        #
+#    Updated: 2025/12/23 18:48:11 by hwakatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,18 @@ SRCS =	ft_isalpha.c \
 		ft_lstmap.c \
 		get_next_line_utils.c \
 		get_next_line.c \
+		flag_check.c \
+		ft_itoa_base.c \
+		ft_printf.c \
+		printf_helper.c \
+		put_printf.c \
+		space_zero_print.c \
+		specifier_cs_per.c \
+		specifier_di.c \
+		specifier_p.c \
+		specifier_u.c \
+		specifier_x_upper.c \
+		specifier_x.c \
 
 OBJS = $(SRCS:.c=.o)
 

@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   specifier_x.c                                      :+:      :+:    :+:   */
+/*   specifier_di.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 15:28:47 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/10/31 18:53:11 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2025/12/23 18:50:52 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-static bool	hash_print(unsigned int content, int *count, t_flag *flag,
-		char *buffer)
+static bool	di_sign_print(int content, int *count, t_flag *flag, char *buffer)
 {
-	if (flag->hash && content)
+	if (content < 0)
 	{
-		if (!ft_putstr_printf("0x", count))
+		if (!ft_putchar_printf('-', count))
+		{
+			free(buffer);
+			return (false);
+		}
+	}
+	else if (flag->plus)
+	{
+		if (!ft_putchar_printf('+', count))
+		{
+			free(buffer);
+			return (false);
+		}
+	}
+	else if (flag->space)
+	{
+		if (!ft_putchar_printf(' ', count))
 		{
 			free(buffer);
 			return (false);
@@ -26,78 +41,65 @@ static bool	hash_print(unsigned int content, int *count, t_flag *flag,
 	return (true);
 }
 
-bool	x_width_print(unsigned int content, int *count, t_flag *flag,
-		char *buffer)
+bool	di_width_print(int content, int *count, t_flag *flag, char *buffer)
 {
 	int	width;
-	int	hash_count;
+	int	sign;
 	int	digits;
 	int	flag_width_plus_zero;
 
-	if (flag->hash && content)
-		hash_count = 2;
-	else
-		hash_count = 0;
 	digits = flag_strlen(content, buffer, flag);
+	sign = (content < 0 || flag->plus || flag->space);
 	flag_width_plus_zero = flag->width;
-	if (flag_width_plus_zero > digits + hash_count && !flag->minus
-		&& (!flag->zero || flag->dot))
+	if (flag_width_plus_zero > digits + sign && !flag->minus && (!flag->zero
+			|| flag->dot))
 	{
 		if (flag->precision > digits)
-			width = flag_width_plus_zero - flag->precision - hash_count;
+			width = flag_width_plus_zero - flag->precision - sign;
 		else
-			width = flag_width_plus_zero - digits - hash_count;
+			width = flag_width_plus_zero - digits - sign;
 		if (!space_print_malloc(width, count, buffer))
 			return (false);
 	}
 	return (true);
 }
 
-bool	x_minus_print(unsigned int content, int *count, t_flag *flag,
-		char *buffer)
+bool	di_minus_print(int content, int *count, t_flag *flag, char *buffer)
 {
 	int	width;
-	int	hash_count;
+	int	sign;
 	int	digits;
 	int	flag_width_plus_zero;
 
-	if (flag->hash && content)
-		hash_count = 2;
-	else
-		hash_count = 0;
 	digits = flag_strlen(content, buffer, flag);
+	sign = (content < 0 || flag->plus || flag->space);
 	flag_width_plus_zero = flag->width;
-	if (flag_width_plus_zero > digits + hash_count && flag->minus)
+	if (flag_width_plus_zero > digits + sign && flag->minus)
 	{
 		if (flag->precision > digits)
-			width = flag_width_plus_zero - flag->precision - hash_count;
+			width = flag_width_plus_zero - flag->precision - sign;
 		else
-			width = flag_width_plus_zero - digits - hash_count;
+			width = flag_width_plus_zero - digits - sign;
 		if (!space_print_malloc(width, count, buffer))
 			return (false);
 	}
 	return (true);
 }
 
-static bool	x_before_print(unsigned int content, int *count, t_flag *flag,
-		char *buffer)
+static bool	di_before_print(int content, int *count, t_flag *flag, char *buffer)
 {
-	int	digits;
-	int	hash_count;
+	int		digits;
+	int		sign;
 
-	if (flag->hash && content)
-		hash_count = 2;
-	else
-		hash_count = 0;
+	sign = (content < 0 || flag->plus || flag->space);
 	digits = flag_strlen(content, buffer, flag);
-	if (!x_width_print(content, count, flag, buffer))
+	if (!di_width_print(content, count, flag, buffer))
 		return (false);
-	if (!hash_print(content, count, flag, buffer))
+	if (!di_sign_print(content, count, flag, buffer))
 		return (false);
 	if (flag->width > digits && !flag->dot && !flag->minus && flag->zero)
 	{
-		if (!zero_print_malloc(flag->width - digits - hash_count, count,
-				buffer))
+		if (!zero_print_malloc(flag->width - digits - sign, count, buffer))
 			return (false);
 	}
 	if (flag->precision > digits && flag->dot)
@@ -108,16 +110,20 @@ static bool	x_before_print(unsigned int content, int *count, t_flag *flag,
 	return (true);
 }
 
-bool	x_specifier(unsigned int content, int *count, t_flag *flag)
+bool	di_specifier(int content, int *count, t_flag *flag)
 {
 	char	*buffer;
 	int		digits;
+	long	tmp;
 
-	buffer = itoa_base((uintptr_t)content, "0123456789abcdef");
+	tmp = (long)content;
+	if (content < 0)
+		tmp *= -1;
+	buffer = itoa_base((uintptr_t)tmp, "0123456789");
 	if (!buffer)
 		return (false);
 	digits = flag_strlen(content, buffer, flag);
-	if (!x_before_print(content, count, flag, buffer))
+	if (!di_before_print(content, count, flag, buffer))
 		return (false);
 	if (!(!content && flag->dot && !flag->precision))
 	{
@@ -127,7 +133,7 @@ bool	x_specifier(unsigned int content, int *count, t_flag *flag)
 			return (false);
 		}
 	}
-	if (!x_minus_print(content, count, flag, buffer))
+	if (!di_minus_print(content, count, flag, buffer))
 		return (false);
 	free(buffer);
 	return (true);

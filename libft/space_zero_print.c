@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_space_zero_print.c                              :+:      :+:    :+:   */
+/*   space_zero_print.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 21:30:07 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/10/31 21:22:14 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2025/12/23 18:50:44 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 bool	space_print(int flag_count, int *count)
 {
