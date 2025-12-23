@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 20:25:36 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/10/22 19:52:24 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2025/12/23 18:33:47 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	ft_lstadd_back(t_gnl **lst, t_gnl *new)
 {
-	t_list	*last_lst;
+	t_gnl	*last_lst;
 
 	if (!lst)
 		return ;

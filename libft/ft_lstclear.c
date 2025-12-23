@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 15:33:19 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/10/22 19:52:42 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2025/12/23 18:33:47 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	ft_lstclear(t_gnl **lst, void (*del)(void *))
 {
-	t_list	*tmp;
+	t_gnl	*tmp;
 
 	if (!lst || !del)
 		return ;

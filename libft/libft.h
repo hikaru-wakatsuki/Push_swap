@@ -6,18 +6,23 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 03:42:20 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/10/21 12:38:20 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2025/12/23 18:37:32 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <fcntl.h>
 # include <limits.h>
 # include <stdbool.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
 
 typedef struct s_list
 {
@@ -25,6 +30,14 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct s_gnl
+{
+	int				fd;
+	char			*content;
+	struct s_gnl	*next;
+}					t_gnl;
+
+// libft
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
@@ -60,15 +73,21 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
-t_list				*ft_lstnew(void *content);
-void				ft_lstadd_front(t_list **lst, t_list *new);
-int					ft_lstsize(t_list *lst);
-t_list				*ft_lstlast(t_list *lst);
-void				ft_lstadd_back(t_list **lst, t_list *new);
-void				ft_lstdelone(t_list *lst, void (*del)(void *));
-void				ft_lstclear(t_list **lst, void (*del)(void *));
-void				ft_lstiter(t_list *lst, void (*f)(void *));
-t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
+t_gnl				*ft_lstnew(void *content);
+void				ft_lstadd_front(t_gnl **lst, t_gnl *new);
+int					ft_lstsize(t_gnl *lst);
+t_gnl				*ft_lstlast(t_gnl *lst);
+void				ft_lstadd_back(t_gnl **lst, t_gnl *new);
+void				ft_lstdelone(t_gnl *lst, void (*del)(void *));
+void				ft_lstclear(t_gnl **lst, void (*del)(void *));
+void				ft_lstiter(t_gnl *lst, void (*f)(void *));
+t_gnl				*ft_lstmap(t_gnl *lst, void *(*f)(void *),
 						void (*del)(void *));
+// get_next_line_utils_bonus.c
+char				*strjoin_and_free(char *s1, char *s2);
+t_gnl				*get_node(int fd, t_gnl **head);
+void				remove_node(int fd, t_gnl **head);
+// get_next_line_bonus.c
+char				*get_next_line(int fd);
 
 #endif

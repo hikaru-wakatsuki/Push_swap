@@ -6,7 +6,7 @@
 #    By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 21:01:17 by hwakatsu          #+#    #+#              #
-#    Updated: 2025/12/03 15:15:39 by hwakatsu         ###   ########.fr        #
+#    Updated: 2025/12/23 18:35:26 by hwakatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,6 +59,8 @@ SRCS =	ft_isalpha.c \
 		ft_lstclear.c \
 		ft_lstiter.c \
 		ft_lstmap.c \
+		get_next_line_utils.c \
+		get_next_line.c \
 
 OBJS = $(SRCS:.c=.o)
 
