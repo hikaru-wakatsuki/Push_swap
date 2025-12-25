@@ -6,7 +6,7 @@
 #    By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 21:01:17 by hwakatsu          #+#    #+#              #
-#    Updated: 2025/12/23 18:48:11 by hwakatsu         ###   ########.fr        #
+#    Updated: 2025/12/25 07:05:21 by hwakatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,8 @@ SRCS =	ft_isalpha.c \
 		specifier_u.c \
 		specifier_x_upper.c \
 		specifier_x.c \
+		ft_strndup.c \
+		ft_count_words.c \
 
 OBJS = $(SRCS:.c=.o)
 

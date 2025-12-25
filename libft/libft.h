@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 03:42:20 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/12/23 18:46:42 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2025/12/25 07:05:42 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_flags
 	int				precision;
 }					t_flag;
 
-// libft.c
+// libft
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
@@ -97,6 +97,8 @@ void				ft_lstclear(t_gnl **lst, void (*del)(void *));
 void				ft_lstiter(t_gnl *lst, void (*f)(void *));
 t_gnl				*ft_lstmap(t_gnl *lst, void *(*f)(void *),
 						void (*del)(void *));
+char				*ft_strndup(const char *s, size_t n);
+size_t				count_words(char const *s, char const c);
 // get_next_line_utils_bonus.c
 char				*strjoin_and_free(char *s1, char *s2);
 t_gnl				*get_node(int fd, t_gnl **head);
