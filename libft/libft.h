@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 03:42:20 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/12/25 07:05:42 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2025/12/26 10:59:37 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
+int					ft_isspace(int c);
 size_t				ft_strlen(const char *s);
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
@@ -87,22 +88,22 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
-t_gnl				*ft_lstnew(void *content);
-void				ft_lstadd_front(t_gnl **lst, t_gnl *new);
-int					ft_lstsize(t_gnl *lst);
-t_gnl				*ft_lstlast(t_gnl *lst);
-void				ft_lstadd_back(t_gnl **lst, t_gnl *new);
-void				ft_lstdelone(t_gnl *lst, void (*del)(void *));
-void				ft_lstclear(t_gnl **lst, void (*del)(void *));
-void				ft_lstiter(t_gnl *lst, void (*f)(void *));
-t_gnl				*ft_lstmap(t_gnl *lst, void *(*f)(void *),
+t_list				*ft_lstnew(void *content);
+void				ft_lstadd_front(t_list **lst, t_list *new);
+int					ft_lstsize(t_list *lst);
+t_list				*ft_lstlast(t_list *lst);
+void				ft_lstadd_back(t_list **lst, t_list *new);
+void				ft_lstdelone(t_list *lst, void (*del)(void *));
+void				ft_lstclear(t_list **lst, void (*del)(void *));
+void				ft_lstiter(t_list *lst, void (*f)(void *));
+t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 char				*ft_strndup(const char *s, size_t n);
 size_t				count_words(char const *s, char const c);
 // get_next_line_utils_bonus.c
 char				*strjoin_and_free(char *s1, char *s2);
-t_gnl				*get_node(int fd, t_gnl **head);
-void				remove_node(int fd, t_gnl **head);
+t_list				*get_node(int fd, t_list **head);
+void				remove_node(int fd, t_list **head);
 // get_next_line_bonus.c
 char				*get_next_line(int fd);
 // space_zero_print.c

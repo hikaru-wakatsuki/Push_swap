@@ -1,25 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/20 18:44:06 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/12/26 10:59:01 by hwakatsu         ###   ########.fr       */
+/*   Created: 2025/12/25 08:22:56 by hwakatsu          #+#    #+#             */
+/*   Updated: 2025/12/25 08:23:53 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-t_list	*ft_lstnew(void *content)
+int	ft_isspace(int c)
 {
-	t_list	*lst;
-
-	lst = (t_list *)malloc(sizeof(t_list) * 1);
-	if (!lst)
-		return (NULL);
-	lst->content = content;
-	lst->next = NULL;
-	return (lst);
+	return ((9 <= c && c <= 13) || (c == ' '));
 }

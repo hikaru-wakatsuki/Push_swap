@@ -5,14 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 21:57:10 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/12/25 01:52:06 by hwakatsu         ###   ########.fr       */
+/*   Created: 2025/12/26 10:49:30 by hwakatsu          #+#    #+#             */
+/*   Updated: 2025/12/26 10:49:31 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-count_nu,
-
-int	main(int argc, char *argv[])
-{
-	count_num();
-}

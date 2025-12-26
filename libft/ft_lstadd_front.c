@@ -6,13 +6,13 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 18:44:00 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/12/23 18:33:47 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2025/12/26 10:59:01 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_gnl **lst, t_gnl *new)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	if (!*lst)
 		*lst = new;

@@ -6,7 +6,7 @@
 #    By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 21:01:17 by hwakatsu          #+#    #+#              #
-#    Updated: 2025/12/25 07:05:21 by hwakatsu         ###   ########.fr        #
+#    Updated: 2025/12/25 08:24:46 by hwakatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS =	ft_isalpha.c \
 		ft_isalnum.c \
 	   	ft_isascii.c \
 		ft_isprint.c \
+		ft_isspace.c \
 		ft_strlen.c \
 		ft_memset.c \
 	   	ft_bzero.c \

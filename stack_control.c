@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   stack_control.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/20 18:44:06 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/12/26 10:59:01 by hwakatsu         ###   ########.fr       */
+/*   Created: 2025/12/26 10:48:41 by hwakatsu          #+#    #+#             */
+/*   Updated: 2025/12/26 11:58:02 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "libft/libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstnew(void *content)
+void	push_stack(t_stack **stack, int push_value)
 {
-	t_list	*lst;
+	t_stack	**cur;
 
-	lst = (t_list *)malloc(sizeof(t_list) * 1);
-	if (!lst)
-		return (NULL);
-	lst->content = content;
-	lst->next = NULL;
-	return (lst);
+	cur = stack;
+	(*stack)->value = push_value;
+	(*stack)->next = *cur;
+}
+
+void	pop_stack(t_stack **stack)
+{
 }

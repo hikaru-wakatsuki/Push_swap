@@ -6,13 +6,13 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 19:43:14 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/12/23 18:33:47 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2025/12/26 10:59:01 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_gnl *lst)
+int	ft_lstsize(t_list *lst)
 {
 	int	i;
 
