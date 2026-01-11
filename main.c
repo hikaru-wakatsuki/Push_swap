@@ -62,12 +62,16 @@ int	main(int argc, char *argv[])
 			return (output_error(), 1);
 		count = count_num(argv);
 		stack_a = (t_stack *)ft_calloc((count + 1), sizeof(t_stack));
-		stack_b = (t_stack *)ft_calloc((count + 1), sizeof(t_stack));
-		if (!stack_a || !stack_b)
+		if (!stack_a)
 			return (output_error(), 1);
 		if (!input_num(argv, &stack_a))
 			return (output_error(), 1);
-		find_min_max();
+		if (!input_num(argv, &stack_a, &min, &max)
+			return (output_error(), 1);
+		if (!push_swap(&stack_a, &stack_b, min, max)
+			return (output_error(), 1);		
 	}
 	return (output_error(), 1);
 }
+
+
