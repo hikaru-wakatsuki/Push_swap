@@ -25,4 +25,7 @@ void	find_min_max(t_stack *stack_a, int *min, int *max);
 //stack_control.c
 void	push_stack(t_stack **stack, int push_value);
 
+
+bool	check_atoi(const char *nptr);
+
 #endif

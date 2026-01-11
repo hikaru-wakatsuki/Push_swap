@@ -27,9 +27,15 @@ bool	push_stack_find_minmax(char *argv, t_stack **stack_a, int *min, int *max)
 {
 	int	num;
 
-	
-	push_stack(stack_a, ft_atoi(argv));
-
+	if (!check_atoi(argv))
+		return (false);
+	num = ft_atoi(argv);				
+	push_stack(stack_a, num);
+	if (num < *min)
+		*min = num;
+	if (num > *max)
+		*max = num;	
+	return (true);
 }
 
 bool	input_num(char *argv[], t_stack **stack_a, int *min, int *max)
@@ -39,12 +45,15 @@ bool	input_num(char *argv[], t_stack **stack_a, int *min, int *max)
 	size_t	j;
 
 	i = 1;
-	*min = INT_MIN;
-	*max = INT_MAX;
+	*min = INT_MAX;
+	*max = INT_MIN;
 	while (argv[i])
 	{
 		if (count_words(argv[i], ' ') == 1)
-			push_stack(stack_a, ft_atoi(argv[i]));
+		{
+			if (!push_stack_find_minmax(argv[i], stack_a, min, max))
+			return (false);
+		}	
 		else
 		{
 			tmp = ft_split(argv[i], ' ');
@@ -52,17 +61,13 @@ bool	input_num(char *argv[], t_stack **stack_a, int *min, int *max)
 				return (false);
 			j = 0;
 			while (tmp[j])
-				push_stack(stack_a, ft_atoi(tmp[j++]));
+			{
+				if (!push_stack_find_minmax(tmp[j], stack_a, min, max))
+					return (false);
+			}
 			split_free(tmp);
 		}
 		i++;
 	}
-}
-
-void	find_min_max(t_stack *stack_a, int *min, int *max)
-{
-	int tmp;
-	*min = stack_a->value;
-	*max = stack_a->value;
-
+	return (true);
 }
