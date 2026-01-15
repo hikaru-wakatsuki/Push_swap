@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 21:57:10 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/12/26 14:30:54 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:31:40 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	main(int argc, char *argv[])
 {
 	size_t	count;
 	t_stack	*stack_a;
-	t_stack	*stack_b;
 	int		min;
 	int		max;
 
@@ -64,14 +63,10 @@ int	main(int argc, char *argv[])
 		stack_a = (t_stack *)ft_calloc((count + 1), sizeof(t_stack));
 		if (!stack_a)
 			return (output_error(), 1);
-		if (!input_num(argv, &stack_a))
+		if (!initialize_stack_a(argv, &stack_a, &min, &max))
 			return (output_error(), 1);
-		if (!input_num(argv, &stack_a, &min, &max)
+		if (!push_swap(&stack_a, min, max, count))
 			return (output_error(), 1);
-		if (!push_swap(&stack_a, &stack_b, min, max)
-			return (output_error(), 1);		
 	}
 	return (output_error(), 1);
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 12:07:18 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/14 12:39:01 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:31:12 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ bool	push_stack_find_minmax(char *argv, t_stack **stack_a, int *min,
 	return (true);
 }
 
-bool	input_num(char *argv[], t_stack **stack_a, int *min, int *max)
+bool	initialize_stack_a(char *argv[], t_stack **stack_a, int *min, int *max)
 {
 	char	**tmp;
 	size_t	i;
