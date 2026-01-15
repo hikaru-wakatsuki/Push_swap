@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 12:07:18 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/12/26 15:14:10 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/14 12:39:01 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,19 @@ static void	split_free(char **tmp)
 	free(tmp);
 }
 
-bool	push_stack_find_minmax(char *argv, t_stack **stack_a, int *min, int *max)
+bool	push_stack_find_minmax(char *argv, t_stack **stack_a, int *min,
+		int *max)
 {
 	int	num;
 
 	if (!check_atoi(argv))
 		return (false);
-	num = ft_atoi(argv);				
+	num = ft_atoi(argv);
 	push_stack(stack_a, num);
 	if (num < *min)
 		*min = num;
 	if (num > *max)
-		*max = num;	
+		*max = num;
 	return (true);
 }
 
@@ -52,8 +53,8 @@ bool	input_num(char *argv[], t_stack **stack_a, int *min, int *max)
 		if (count_words(argv[i], ' ') == 1)
 		{
 			if (!push_stack_find_minmax(argv[i], stack_a, min, max))
-			return (false);
-		}	
+				return (false);
+		}
 		else
 		{
 			tmp = ft_split(argv[i], ' ');
