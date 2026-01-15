@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/24 19:21:03 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/12/23 18:51:21 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/15 16:54:00 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +64,14 @@ int	ft_printf(const char *format, ...)
 		{
 			format++;
 			if (!is_valid_printf(&format, &ap, &count))
-				return (count);
+				return (-1);
 		}
 		else
 		{
 			if (!ft_putchar_printf(*format, &count))
 			{
 				va_end(ap);
-				return (count);
+				return (-1);
 			}
 		}
 		++format;

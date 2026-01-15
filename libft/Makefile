@@ -6,7 +6,7 @@
 #    By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 21:01:17 by hwakatsu          #+#    #+#              #
-#    Updated: 2025/12/25 08:24:46 by hwakatsu         ###   ########.fr        #
+#    Updated: 2026/01/15 19:03:59 by hwakatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ SRCS =	ft_isalpha.c \
 		ft_strjoin.c \
 		ft_strtrim.c \
 		ft_split.c \
+		ft_swap.c \
 		ft_itoa.c \
 		ft_strmapi.c \
 		ft_striteri.c \
