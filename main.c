@@ -6,19 +6,19 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 21:57:10 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/15 16:31:40 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/15 22:11:18 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
 
-void	output_error(void)
+static void	output_error(void)
 {
 	ft_printf("Error\n");
 }
 
-size_t	count_num(char *argv[])
+static size_t	count_num(char *argv[])
 {
 	size_t	count;
 	size_t	i;
@@ -30,7 +30,7 @@ size_t	count_num(char *argv[])
 	return (count);
 }
 
-bool	error_check(char *argv[])
+static bool	error_check(char *argv[])
 {
 	size_t	i;
 	size_t	j;
@@ -48,10 +48,28 @@ bool	error_check(char *argv[])
 	}
 }
 
+static bool	check_duplication(t_stack *stack)
+{
+	t_stack	*cur;
+
+	while (stack)
+	{
+		cur = stack->next;
+		while (cur)
+		{
+			if (cur->value == stack->value)
+				return (false);
+			cur = cur->next;
+		}
+		stack = stack->next;
+	}
+	return (true);
+}
+
 int	main(int argc, char *argv[])
 {
 	size_t	count;
-	t_stack	*stack_a;
+	t_stack	*a;
 	int		min;
 	int		max;
 
@@ -60,12 +78,14 @@ int	main(int argc, char *argv[])
 		if (!error_check(argv))
 			return (output_error(), 1);
 		count = count_num(argv);
-		stack_a = (t_stack *)ft_calloc((count + 1), sizeof(t_stack));
-		if (!stack_a)
+		a = (t_stack *)ft_calloc((count + 1), sizeof(t_stack));
+		if (!a)
 			return (output_error(), 1);
-		if (!initialize_stack_a(argv, &stack_a, &min, &max))
+		if (!initialize_stack_a(argv, &a, &min, &max))
 			return (output_error(), 1);
-		if (!push_swap(&stack_a, min, max, count))
+		if (!check_duplication(a))
+			return (output_error(), 1);
+		if (!push_swap(&a, min, max, count))
 			return (output_error(), 1);
 	}
 	return (output_error(), 1);

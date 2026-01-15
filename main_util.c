@@ -6,12 +6,21 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 12:07:18 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/15 16:31:12 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/15 22:13:22 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
+
+static void	initialize_stack(t_stack **a, int value)
+{
+	t_stack	**cur;
+
+	cur = a;
+	(*a)->value = value;
+	(*a)->next = *cur;
+}
 
 static void	split_free(char **tmp)
 {
@@ -23,15 +32,14 @@ static void	split_free(char **tmp)
 	free(tmp);
 }
 
-bool	push_stack_find_minmax(char *argv, t_stack **stack_a, int *min,
-		int *max)
+static bool	push_stack_find_minmax(char *argv, t_stack **a, int *min, int *max)
 {
 	int	num;
 
 	if (!check_atoi(argv))
 		return (false);
 	num = ft_atoi(argv);
-	push_stack(stack_a, num);
+	initialize_stack(a, num);
 	if (num < *min)
 		*min = num;
 	if (num > *max)
@@ -39,7 +47,7 @@ bool	push_stack_find_minmax(char *argv, t_stack **stack_a, int *min,
 	return (true);
 }
 
-bool	initialize_stack_a(char *argv[], t_stack **stack_a, int *min, int *max)
+bool	initialize_stack_a(char *argv[], t_stack **a, int *min, int *max)
 {
 	char	**tmp;
 	size_t	i;
@@ -52,7 +60,7 @@ bool	initialize_stack_a(char *argv[], t_stack **stack_a, int *min, int *max)
 	{
 		if (count_words(argv[i], ' ') == 1)
 		{
-			if (!push_stack_find_minmax(argv[i], stack_a, min, max))
+			if (!push_stack_find_minmax(argv[i], a, min, max))
 				return (false);
 		}
 		else
@@ -63,7 +71,7 @@ bool	initialize_stack_a(char *argv[], t_stack **stack_a, int *min, int *max)
 			j = 0;
 			while (tmp[j])
 			{
-				if (!push_stack_find_minmax(tmp[j], stack_a, min, max))
+				if (!push_stack_find_minmax(tmp[j], a, min, max))
 					return (false);
 			}
 			split_free(tmp);
