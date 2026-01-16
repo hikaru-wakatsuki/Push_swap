@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 20:20:01 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/16 16:34:41 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/16 21:40:48 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ bool				check_atoi(const char *nptr);
 bool				initialize_stack_a(char *argv[], t_stack **a, int *min,
 						int *max);
 // push_swap.c
+bool				three_stack(t_stack **a, int min, int max);
+int					find_min(t_stack *a);
 bool				push_swap(t_stack **a, int min, int max, size_t count);
 // stack_control_a.c
 bool				pa(t_stack **a, t_stack **b);

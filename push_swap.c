@@ -6,14 +6,14 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 10:49:30 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/16 17:37:41 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/16 21:37:58 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
 
-bool	two_stack(t_stack **a, int min, int max)
+static bool	two_stack(t_stack **a, int min, int max)
 {
 	if (min == (*a)->value)
 		return (true);
@@ -52,19 +52,19 @@ bool	three_stack(t_stack **a, int min, int max)
 
 int	find_min(t_stack *a)
 {
-	int	second_min;
+	int	min;
 
-	second_min = INT_MAX;
+	min = INT_MAX;
 	while (a)
 	{
-		if (a->value < second_min)
-			second_min = a->value;
+		if (a->value < min)
+			min = a->value;
 		a = a->next;
 	}
-	return (second_min);
+	return (min);
 }
 
-bool	under_five_stack(t_stack **a, int min, int max, size_t count)
+static bool	four_or_five_stack(t_stack **a, int min, int max, size_t count)
 {
 	t_stack	*b;
 
@@ -106,7 +106,13 @@ bool	push_swap(t_stack **a, int min, int max, size_t count)
 	}
 	if (count <= 5)
 	{
-		if (!under_five_stack(a, min, max, count))
+		if (!four_or_five_stack(a, min, max, count))
 			return (false);
 	}
+	else
+	{
+		if (!over_five_stack(a, min, max, count))
+			return (false);
+	}
+	return (true);
 }
