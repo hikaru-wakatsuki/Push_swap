@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 10:49:30 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/16 17:25:45 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/16 17:37:41 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	find_min(t_stack *a)
 bool	under_five_stack(t_stack **a, int min, int max, size_t count)
 {
 	t_stack	*b;
-	int		second_min;
 
 	b = NULL;
 	if (!bring_min_to_top(a, min, count))
@@ -76,13 +75,12 @@ bool	under_five_stack(t_stack **a, int min, int max, size_t count)
 		return (false);
 	if (count == 5)
 	{
-		second_min = find_min(*a);
-		if (!bring_min_to_top(a, second_min, count - 1))
+		if (!bring_min_to_top(a, find_min(*a), count - 1))
 			return (false);
 		if (!pb(a, &b))
 			return (false);
 	}
-	if (!three_stack(a, min, max))
+	if (!three_stack(a, find_min(*a), max))
 		return (false);
 	if (!pa(a, &b))
 		return (false);
