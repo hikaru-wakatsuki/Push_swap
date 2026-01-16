@@ -6,14 +6,14 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 12:07:18 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/15 22:13:22 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/16 14:54:11 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
 
-static void	initialize_stack(t_stack **a, int value)
+static void	initialize_push(t_stack **a, int value)
 {
 	t_stack	**cur;
 
@@ -32,14 +32,15 @@ static void	split_free(char **tmp)
 	free(tmp);
 }
 
-static bool	push_stack_find_minmax(char *argv, t_stack **a, int *min, int *max)
+static bool	initialize_and_find_minmax(char *str, t_stack **a, int *min,
+		int *max)
 {
 	int	num;
 
-	if (!check_atoi(argv))
+	if (!check_atoi(str))
 		return (false);
-	num = ft_atoi(argv);
-	initialize_stack(a, num);
+	num = ft_atoi(str);
+	initialize_push(a, num);
 	if (num < *min)
 		*min = num;
 	if (num > *max)
@@ -47,11 +48,27 @@ static bool	push_stack_find_minmax(char *argv, t_stack **a, int *min, int *max)
 	return (true);
 }
 
-bool	initialize_stack_a(char *argv[], t_stack **a, int *min, int *max)
+static bool	split_and_initialize(char *str, t_stack **a, int *min, int *max)
 {
 	char	**tmp;
 	size_t	i;
-	size_t	j;
+
+	tmp = ft_split(str, ' ');
+	if (!tmp)
+		return (false);
+	i = 0;
+	while (tmp[i])
+	{
+		if (!initialize_and_find_minmax(tmp[i], a, min, max))
+			return (false);
+	}
+	split_free(tmp);
+	return (true);
+}
+
+bool	initialize_stack_a(char *argv[], t_stack **a, int *min, int *max)
+{
+	size_t	i;
 
 	i = 1;
 	*min = INT_MAX;
@@ -60,21 +77,13 @@ bool	initialize_stack_a(char *argv[], t_stack **a, int *min, int *max)
 	{
 		if (count_words(argv[i], ' ') == 1)
 		{
-			if (!push_stack_find_minmax(argv[i], a, min, max))
+			if (!initialize_and_find_minmax(argv[i], a, min, max))
 				return (false);
 		}
 		else
 		{
-			tmp = ft_split(argv[i], ' ');
-			if (!tmp)
+			if (!split_and_initialize(argv[i], a, min, max))
 				return (false);
-			j = 0;
-			while (tmp[j])
-			{
-				if (!push_stack_find_minmax(tmp[j], a, min, max))
-					return (false);
-			}
-			split_free(tmp);
 		}
 		i++;
 	}

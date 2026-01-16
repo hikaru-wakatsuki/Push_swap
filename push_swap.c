@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 10:49:30 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/15 22:10:29 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/16 15:59:17 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ bool	three_stack(t_stack **a, int min, int max)
 {
 	if ((*a)->value == max)
 	{
-		if (!rotate_stack(a))
+		if (!ra(a))
 			return (false);
 		if (!two_stack(a, min, max))
 			return (false);
 	}
 	else if ((*a)->next->value == max)
 	{
-		if (!reverse_rotate_stack(a))
+		if (!rra(a))
 			return (false);
 		if (!two_stack(a, min, max))
 			return (false);
@@ -52,13 +52,13 @@ bool	three_stack(t_stack **a, int min, int max)
 
 bool	under_five_stack(t_stack **a, int min, int max, size_t count)
 {
-	biring_min_to_top(a, min);
+	t_stack	*stack_b;
+
+	bring_min_to_top(a, min, count);
 }
 
 bool	push_swap(t_stack **a, int min, int max, size_t count)
 {
-	t_stack	*stack_b;
-
 	if (count == 2)
 	{
 		if (!two_stack(a, min, max))
@@ -74,6 +74,4 @@ bool	push_swap(t_stack **a, int min, int max, size_t count)
 		if (!under_five_stack(a, min, max, count))
 			return (false);
 	}
-
-	stack_b = (t_stack *)ft_calloc((count + 1), sizeof(t_stack));
 }

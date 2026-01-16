@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 20:20:01 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/15 22:14:59 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/16 15:49:25 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,14 @@ bool				initialize_stack_a(char *argv[], t_stack **a, int *min,
 // push_swap.c
 bool				push_swap(t_stack **a, int min, int max, size_t count);
 // stack_control_a.c
-bool	pa(t_stack **stack_a, t_stack **stack_b);
-bool	ra(t_stack **stack);
-bool	rra(t_stack **stack);
-void				bring_min_to_top(t_stack **stack_a, int min, size_t count);
+bool				pa(t_stack **a, t_stack **b);
+bool				ra(t_stack **a);
+bool				rra(t_stack **a);
+// stack_control_b.c
+bool				pb(t_stack **a, t_stack **b);
+bool				rb(t_stack **b);
+bool				rrb(t_stack **b);
+// stack_control.c
+void				bring_min_to_top(t_stack **a, int min, size_t count);
+
 #endif
