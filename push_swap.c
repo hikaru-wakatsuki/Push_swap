@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 10:49:30 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/16 15:59:17 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/16 17:25:45 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,48 @@ bool	three_stack(t_stack **a, int min, int max)
 	return (true);
 }
 
+int	find_min(t_stack *a)
+{
+	int	second_min;
+
+	second_min = INT_MAX;
+	while (a)
+	{
+		if (a->value < second_min)
+			second_min = a->value;
+		a = a->next;
+	}
+	return (second_min);
+}
+
 bool	under_five_stack(t_stack **a, int min, int max, size_t count)
 {
-	t_stack	*stack_b;
+	t_stack	*b;
+	int		second_min;
 
-	bring_min_to_top(a, min, count);
+	b = NULL;
+	if (!bring_min_to_top(a, min, count))
+		return (false);
+	if (!pb(a, &b))
+		return (false);
+	if (count == 5)
+	{
+		second_min = find_min(*a);
+		if (!bring_min_to_top(a, second_min, count - 1))
+			return (false);
+		if (!pb(a, &b))
+			return (false);
+	}
+	if (!three_stack(a, min, max))
+		return (false);
+	if (!pa(a, &b))
+		return (false);
+	if (count == 5)
+	{
+		if (!pa(a, &b))
+			return (false);
+	}
+	return (true);
 }
 
 bool	push_swap(t_stack **a, int min, int max, size_t count)

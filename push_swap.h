@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 20:20:01 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/16 15:49:25 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/16 16:34:41 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,6 @@ bool				pb(t_stack **a, t_stack **b);
 bool				rb(t_stack **b);
 bool				rrb(t_stack **b);
 // stack_control.c
-void				bring_min_to_top(t_stack **a, int min, size_t count);
+bool				bring_min_to_top(t_stack **a, int min, size_t count);
 
 #endif

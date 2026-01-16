@@ -6,33 +6,46 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:49:49 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/16 15:58:07 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/16 16:31:43 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
 
-void	bring_min_to_top(t_stack **a, int min, size_t count)
+static size_t	find_min_index(t_stack *a, int min)
 {
 	size_t	i;
-	t_stack	*pos;
 
 	i = 0;
-	pos = *a;
-	while (pos->value != min)
+	while (a && a->value != min)
 	{
-		pos = pos->next;
+		a = a->next;
 		i++;
 	}
+	return (i);
+}
+
+bool	bring_min_to_top(t_stack **a, int min, size_t count)
+{
+	size_t	i;
+
+	i = find_min_index(*a, min);
 	if (i <= count / 2)
 	{
 		while ((*a)->value != min)
-			ra(a);
+		{
+			if (!ra(a))
+				return (false);
+		}
 	}
 	else
 	{
 		while ((*a)->value != min)
-			rra(a);
+		{
+			if (!rra(a))
+				return (false);
+		}
 	}
+	return (true);
 }
