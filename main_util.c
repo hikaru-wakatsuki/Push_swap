@@ -6,20 +6,33 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 12:07:18 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/16 14:54:11 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/17 17:42:27 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
 
-static void	initialize_push(t_stack **a, int value)
+static bool	initialize_push(t_stack **a, int value)
 {
-	t_stack	**cur;
+	t_stack	*new;
+	t_stack	*cur;
 
-	cur = a;
-	(*a)->value = value;
-	(*a)->next = *cur;
+	new = (t_stack *)malloc(sizeof(t_stack));
+	if (!new)
+		return (false);
+	new->value = value;
+	new->next = NULL;
+	if (!*a)
+	{
+		*a = new;
+		return (true);
+	}
+	cur = *a;
+	while (cur->next)
+		cur = cur->next;
+	cur->next = new;
+	return (true);
 }
 
 static void	split_free(char **tmp)
@@ -40,7 +53,8 @@ static bool	initialize_and_find_minmax(char *str, t_stack **a, int *min,
 	if (!check_atoi(str))
 		return (false);
 	num = ft_atoi(str);
-	initialize_push(a, num);
+	if (!initialize_push(a, num))
+		return (false);
 	if (num < *min)
 		*min = num;
 	if (num > *max)
@@ -59,7 +73,7 @@ static bool	split_and_initialize(char *str, t_stack **a, int *min, int *max)
 	i = 0;
 	while (tmp[i])
 	{
-		if (!initialize_and_find_minmax(tmp[i], a, min, max))
+		if (!initialize_and_find_minmax(tmp[i++], a, min, max))
 			return (false);
 	}
 	split_free(tmp);

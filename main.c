@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 21:57:10 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/17 16:50:30 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/17 17:49:48 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,7 @@ int	main(int argc, char *argv[])
 		if (!error_check(argv))
 			return (output_error(), 1);
 		count = count_num(argv);
-		a = (t_stack *)ft_calloc((count + 1), sizeof(t_stack));
-		if (!a)
-			return (output_error(), 1);
+		a = NULL;
 		if (!initialize_stack_a(argv, &a, &min, &max))
 			return (output_error(), 1);
 		if (!check_duplication(a))
