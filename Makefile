@@ -6,7 +6,7 @@
 #    By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 19:20:27 by hwakatsu          #+#    #+#              #
-#    Updated: 2025/12/23 20:19:16 by hwakatsu         ###   ########.fr        #
+#    Updated: 2026/01/17 15:33:59 by hwakatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,16 @@ CFLAGS = -Wall -Wextra -Werror
 INCDIR = .
 LIBFT_DIR = libft
 
-SRCS =		flag_check.c \
+SRCS =		check_atoi.c \
+			main_util.c \
+			main.c \
+			push_swap_util.c \
+			push_swap.c \
+			stack_control_a.c \
+			stack_control_b.c \
+			stack_control.c \
+			turk_sort_util.c \
+			turk_sort.c \
 
 OBJS = $(SRCS:.c=.o)
 
