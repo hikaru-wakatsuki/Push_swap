@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 10:49:30 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/17 15:51:56 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/17 16:39:39 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,25 +104,13 @@ static bool	over_five_stack(t_stack **a, size_t count)
 
 bool	push_swap(t_stack **a, int min, int max, size_t count)
 {
+	if (count == 1)
+		return (true);
 	if (count == 2)
-	{
-		if (!two_stack(a, min))
-			return (false);
-	}
+		return (two_stack(a, min));
 	if (count == 3)
-	{
-		if (!three_stack(a, min, max))
-			return (false);
-	}
+		return (three_stack(a, min, max));
 	if (count <= 5)
-	{
-		if (!four_or_five_stack(a, min, max, count))
-			return (false);
-	}
-	else
-	{
-		if (!over_five_stack(a, count))
-			return (false);
-	}
-	return (true);
+		return (four_or_five_stack(a, min, max, count));
+	return (over_five_stack(a, count));
 }
