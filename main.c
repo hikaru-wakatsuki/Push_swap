@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 21:57:10 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/15 22:11:18 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/17 15:41:43 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static bool	error_check(char *argv[])
 			j++;
 		}
 	}
+	return (true);
 }
 
 static bool	check_duplication(t_stack *stack)

@@ -6,20 +6,20 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 10:49:30 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/17 14:58:43 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/17 15:51:56 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
 
-static bool	two_stack(t_stack **a, int min, int max)
+static bool	two_stack(t_stack **a, int min)
 {
 	if (min == (*a)->value)
 		return (true);
 	else
 	{
-		ft_swap((*a)->value, ((*a)->next->value));
+		ft_swap(&((*a)->value), &((*a)->next->value));
 		if (ft_printf("sa\n") < 0)
 			return (false);
 	}
@@ -32,19 +32,19 @@ static bool	three_stack(t_stack **a, int min, int max)
 	{
 		if (!ra(a))
 			return (false);
-		if (!two_stack(a, min, max))
+		if (!two_stack(a, min))
 			return (false);
 	}
 	else if ((*a)->next->value == max)
 	{
 		if (!rra(a))
 			return (false);
-		if (!two_stack(a, min, max))
+		if (!two_stack(a, min))
 			return (false);
 	}
 	else
 	{
-		if (!two_stack(a, min, max))
+		if (!two_stack(a, min))
 			return (false);
 	}
 	return (true);
@@ -78,7 +78,7 @@ static bool	four_or_five_stack(t_stack **a, int min, int max, size_t count)
 	return (true);
 }
 
-static bool	over_five_stack(t_stack **a, int min, int max, size_t count)
+static bool	over_five_stack(t_stack **a, size_t count)
 {
 	t_stack	*b;
 	size_t	i;
@@ -106,7 +106,7 @@ bool	push_swap(t_stack **a, int min, int max, size_t count)
 {
 	if (count == 2)
 	{
-		if (!two_stack(a, min, max))
+		if (!two_stack(a, min))
 			return (false);
 	}
 	if (count == 3)
@@ -121,7 +121,7 @@ bool	push_swap(t_stack **a, int min, int max, size_t count)
 	}
 	else
 	{
-		if (!over_five_stack(a, min, max, count))
+		if (!over_five_stack(a, count))
 			return (false);
 	}
 	return (true);

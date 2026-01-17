@@ -6,15 +6,15 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 19:01:57 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/15 19:02:36 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/17 15:58:53 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 void	ft_swap(int *a, int *b)
 {
-	int	*tmp;
+	int	tmp;
 
-	*tmp = *a;
+	tmp = *a;
 	*a = *b;
-	*b = *tmp;
+	*b = tmp;
 }
