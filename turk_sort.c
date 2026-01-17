@@ -6,14 +6,14 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:42:35 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/17 15:13:50 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/17 16:13:25 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
 
-t_target	initialize_turk(t_target cur)
+static t_target	initialize_turk(t_target cur)
 {
 	cur.ra = 0;
 	cur.rb = 0;
@@ -24,39 +24,45 @@ t_target	initialize_turk(t_target cur)
 	return (cur);
 }
 
-t_target	turk_cal(t_target cur, size_t a_count, size_t b_count)
+static t_target	r_cal(t_target cur, size_t a_count, size_t b_count)
+{
+	if (cur.a_index >= cur.b_index)
+	{
+		cur.rr = cur.b_index;
+		cur.ra = cur.a_index - cur.b_index;
+		return (cur);
+	}
+	else
+	{
+		cur.rr = cur.a_index;
+		cur.rb = cur.b_index - cur.a_index;
+		return (cur);
+	}
+}
+
+static t_target	rr_cal(t_target cur, size_t a_count, size_t b_count)
+{
+	if ((a_count - cur.a_index) >= (b_count - cur.b_index))
+	{
+		cur.rrr = (b_count - cur.b_index);
+		cur.rra = (a_count - cur.a_index) - (b_count - cur.b_index);
+		return (cur);
+	}
+	else
+	{
+		cur.rrr = (a_count - cur.a_index);
+		cur.rrb = (b_count - cur.b_index) - (a_count - cur.a_index);
+		return (cur);
+	}
+}
+
+static t_target	turk_cal(t_target cur, size_t a_count, size_t b_count)
 {
 	cur = initialize_turk(cur);
 	if (cur.a_index <= a_count / 2 && cur.b_index <= b_count / 2)
-	{
-		if (cur.a_index >= cur.b_index)
-		{
-			cur.rr = cur.b_index;
-			cur.ra = cur.a_index - cur.b_index;
-			return (cur);
-		}
-		else
-		{
-			cur.rr = cur.a_index;
-			cur.rb = cur.b_index - cur.a_index;
-			return (cur);
-		}
-	}
+		return (r_cal(cur, a_count, b_count));
 	if (cur.a_index >= a_count / 2 && cur.b_index >= b_count / 2)
-	{
-		if ((a_count - cur.a_index) >= (b_count - cur.b_index))
-		{
-			cur.rrr = (b_count - cur.b_index);
-			cur.rra = (a_count - cur.a_index) - (b_count - cur.b_index);
-			return (cur);
-		}
-		else
-		{
-			cur.rrr = (a_count - cur.a_index);
-			cur.rrb = (b_count - cur.b_index) - (a_count - cur.a_index);
-			return (cur);
-		}
-	}
+		return (rr_cal(cur, a_count, b_count));
 	if (cur.a_index <= a_count / 2)
 		cur.ra = cur.a_index;
 	else
