@@ -6,12 +6,64 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:49:49 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/16 16:31:43 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/17 15:23:14 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
+
+bool	rr(t_stack **a, t_stack **b)
+{
+	t_stack	*first;
+	t_stack	*last;
+
+	first = *a;
+	*a = first->next;
+	first->next = NULL;
+	last = *a;
+	while (last->next)
+		last = last->next;
+	last->next = first;
+	first = *b;
+	*b = first->next;
+	first->next = NULL;
+	last = *b;
+	while (last->next)
+		last = last->next;
+	last->next = first;
+	if (ft_printf("rr\n") < 0)
+		return (false);
+	return (true);
+}
+
+bool	rrr(t_stack **a, t_stack **b)
+{
+	t_stack	*prev;
+	t_stack	*last;
+
+	last = *a;
+	while (last->next)
+	{
+		prev = last;
+		last = last->next;
+	}
+	prev->next = NULL;
+	last->next = *a;
+	*a = last;
+	last = *b;
+	while (last->next)
+	{
+		prev = last;
+		last = last->next;
+	}
+	prev->next = NULL;
+	last->next = *b;
+	*b = last;
+	if (ft_printf("rrr\n") < 0)
+		return (false);
+	return (true);
+}
 
 static size_t	find_min_index(t_stack *a, int min)
 {

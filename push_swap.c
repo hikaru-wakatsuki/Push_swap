@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 10:49:30 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/17 16:36:46 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/17 14:58:43 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ static bool	over_five_stack(t_stack **a, int min, int max, size_t count)
 	i = 0;
 	while (i < count - 3)
 	{
-		pb(a, &b);
+		if (!pb(a, &b))
+			return (false);
 		i++;
 	}
 	if (!three_stack(a, find_min(*a), find_max(*a)))

@@ -6,27 +6,12 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:42:35 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/17 19:38:18 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/17 15:13:50 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
-
-size_t	target_a_index(t_stack *a, int b_value)
-{
-	size_t	a_index;
-
-	a_index = 0;
-	while (a)
-	{
-		if (a->value > b_value)
-			return (a_index);
-		a_index++;
-		a = a->next;
-	}
-	return (0);
-}
 
 t_target	initialize_turk(t_target cur)
 {
@@ -81,14 +66,6 @@ t_target	turk_cal(t_target cur, size_t a_count, size_t b_count)
 	else
 		cur.rrb = (b_count - cur.b_index);
 	return (cur);
-}
-
-bool	turk_execution(t_stack **a, t_stack **b, t_target best)
-{
-	while (best.ra-- > 0)
-		ra(a);
-	while (best.rb-- > 0)
-		rb(b);
 }
 
 bool	turk_sort(t_stack **a, t_stack **b, size_t a_count, size_t b_count)
