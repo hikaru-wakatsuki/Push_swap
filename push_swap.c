@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 10:49:30 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/16 21:37:58 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/17 16:36:46 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static bool	two_stack(t_stack **a, int min, int max)
 	return (true);
 }
 
-bool	three_stack(t_stack **a, int min, int max)
+static bool	three_stack(t_stack **a, int min, int max)
 {
 	if ((*a)->value == max)
 	{
@@ -48,20 +48,6 @@ bool	three_stack(t_stack **a, int min, int max)
 			return (false);
 	}
 	return (true);
-}
-
-int	find_min(t_stack *a)
-{
-	int	min;
-
-	min = INT_MAX;
-	while (a)
-	{
-		if (a->value < min)
-			min = a->value;
-		a = a->next;
-	}
-	return (min);
 }
 
 static bool	four_or_five_stack(t_stack **a, int min, int max, size_t count)
@@ -88,6 +74,29 @@ static bool	four_or_five_stack(t_stack **a, int min, int max, size_t count)
 	{
 		if (!pa(a, &b))
 			return (false);
+	}
+	return (true);
+}
+
+static bool	over_five_stack(t_stack **a, int min, int max, size_t count)
+{
+	t_stack	*b;
+	size_t	i;
+
+	b = NULL;
+	i = 0;
+	while (i < count - 3)
+	{
+		pb(a, &b);
+		i++;
+	}
+	if (!three_stack(a, find_min(*a), find_max(*a)))
+		return (false);
+	while (i > 0)
+	{
+		if (!turk_sort(a, &b, count - i, i))
+			return (false);
+		i--;
 	}
 	return (true);
 }
