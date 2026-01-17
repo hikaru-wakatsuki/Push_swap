@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 21:57:10 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/17 16:48:36 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/17 16:50:30 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static bool	error_check(char *argv[])
 	j = 0;
 	while (argv[i])
 	{
+		j = 0;
 		while (argv[i][j])
 		{
 			if (!(ft_isdigit(argv[i][j]) || ft_isspace(argv[i][j])
