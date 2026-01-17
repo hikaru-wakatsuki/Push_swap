@@ -6,14 +6,14 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:42:35 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/17 16:40:36 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/17 19:38:18 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
 
-size_t	search_index_a(t_stack *a, int b_value)
+size_t	target_a_index(t_stack *a, int b_value)
 {
 	size_t	a_index;
 
@@ -25,46 +25,97 @@ size_t	search_index_a(t_stack *a, int b_value)
 		a_index++;
 		a = a->next;
 	}
-	return (a_index);
+	return (0);
 }
 
-size_t	calcuration_cost(size_t a_index, size_t b_index, size_t a_count,
-		size_t b_count)
+t_target	initialize_turk(t_target cur)
 {
-	size_t	a_calcuration;
-	size_t	b_calcuration;
+	cur.ra = 0;
+	cur.rb = 0;
+	cur.rr = 0;
+	cur.rra = 0;
+	cur.rrb = 0;
+	cur.rrr = 0;
+	return (cur);
+}
 
-	if (a_index == a_count)
-		a_index = 0;
-	if (a_index <= a_count / 2)
-		a_calcuration = a_index;
-	else
-		a_calcuration = a_count - a_index;
-	if (b_index <= b_count / 2)
-		b_calcuration = b_index;
-	else
-		b_calcuration = b_count - b_index;
-	if ((a_index <= a_count / 2 && b_index <= b_count / 2)
-		|| (a_index >= a_count / 2 && b_index >= b_count / 2))
+t_target	turk_cal(t_target cur, size_t a_count, size_t b_count)
+{
+	cur = initialize_turk(cur);
+	if (cur.a_index <= a_count / 2 && cur.b_index <= b_count / 2)
 	{
-		if (a_calcuration >= b_calcuration)
-			return (a_calcuration - b_calcuration);
+		if (cur.a_index >= cur.b_index)
+		{
+			cur.rr = cur.b_index;
+			cur.ra = cur.a_index - cur.b_index;
+			return (cur);
+		}
 		else
-			return (b_calcuration - a_calcuration);
+		{
+			cur.rr = cur.a_index;
+			cur.rb = cur.b_index - cur.a_index;
+			return (cur);
+		}
 	}
+	if (cur.a_index >= a_count / 2 && cur.b_index >= b_count / 2)
+	{
+		if ((a_count - cur.a_index) >= (b_count - cur.b_index))
+		{
+			cur.rrr = (b_count - cur.b_index);
+			cur.rra = (a_count - cur.a_index) - (b_count - cur.b_index);
+			return (cur);
+		}
+		else
+		{
+			cur.rrr = (a_count - cur.a_index);
+			cur.rrb = (b_count - cur.b_index) - (a_count - cur.a_index);
+			return (cur);
+		}
+	}
+	if (cur.a_index <= a_count / 2)
+		cur.ra = cur.a_index;
 	else
-		return (a_calcuration + b_calcuration);
+		cur.rra = (a_count - cur.a_index);
+	if (cur.b_index <= b_count / 2)
+		cur.rb = cur.b_index;
+	else
+		cur.rrb = (b_count - cur.b_index);
+	return (cur);
 }
 
-bool	turk_sort(t_stack *a, t_stack *b, size_t a_count, size_t b_count)
+bool	turk_execution(t_stack **a, t_stack **b, t_target best)
 {
-	size_t	cost;
-	size_t	b_index;
+	while (best.ra-- > 0)
+		ra(a);
+	while (best.rb-- > 0)
+		rb(b);
+}
 
-	b_index = 0;
-	while (b)
+bool	turk_sort(t_stack **a, t_stack **b, size_t a_count, size_t b_count)
+{
+	t_target	best;
+	size_t		best_cost;
+	t_target	cur;
+	size_t		cur_cost;
+	t_stack		*tmp;
+
+	best_cost = SIZE_MAX;
+	cur.b_index = 0;
+	tmp = *b;
+	while (tmp)
 	{
-		b = b->next;
-		b_index++;
+		cur.a_index = target_a_index(*a, tmp->value);
+		cur = turk_cal(cur, a_count, b_count);
+		cur_cost = cur.ra + cur.rb + cur.rr + cur.rra + cur.rrb + cur.rrr;
+		if (best_cost > cur_cost)
+		{
+			best = cur;
+			best_cost = cur_cost;
+		}
+		tmp = tmp->next;
+		cur.b_index++;
 	}
+	if (!turk_execution(a, b, best))
+		return (false);
+	return (true);
 }

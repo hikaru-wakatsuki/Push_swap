@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 20:20:01 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/17 16:40:41 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/17 19:10:14 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@ typedef struct s_stack
 	int				value;
 	struct s_stack	*next;
 }					t_stack;
+
+typedef struct s_target
+{
+	size_t			a_index;
+	size_t			b_index;
+	size_t			ra;
+	size_t			rb;
+	size_t			rr;
+	size_t			rra;
+	size_t			rrb;
+	size_t			rrr;
+}					t_target;
 
 // check_atoi.c
 bool				check_atoi(const char *nptr);
