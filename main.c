@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 21:57:10 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/17 15:41:43 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/17 16:44:14 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,12 @@ static bool	error_check(char *argv[])
 	{
 		while (argv[i][j])
 		{
-			if (!(ft_isdigit(argv[i][j]) || ft_isspace(argv[i][j])))
+			if (!(ft_isdigit(argv[i][j]) || ft_isspace(argv[i][j]
+				|| argv[i][j] == '+' || argv[i][j] == '-')))
 				return (false);
 			j++;
 		}
+		i++;
 	}
 	return (true);
 }
@@ -89,5 +91,5 @@ int	main(int argc, char *argv[])
 		if (!push_swap(&a, min, max, count))
 			return (output_error(), 1);
 	}
-	return (output_error(), 1);
+	return (0);
 }
