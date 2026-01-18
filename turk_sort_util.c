@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 14:52:31 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/17 15:14:06 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/18 16:25:38 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,31 @@
 
 size_t	target_a_index(t_stack *a, int b_value)
 {
-	size_t	a_index;
+	size_t	i;
+	size_t	target_i;
+	int		target_value;
+	size_t	min_i;
+	int		min;
 
-	a_index = 0;
+	i = 0;
+	target_i = 0;
+	target_value = INT_MAX;
+	min = find_min(a);
 	while (a)
 	{
-		if (a->value > b_value)
-			return (a_index);
-		a_index++;
+		if (a->value == min)
+			min_i = i;
+		if (a->value > b_value && a->value < target_value)
+		{
+			target_value = a->value;
+			target_i = i;
+		}
+		i++;
 		a = a->next;
 	}
-	return (0);
+	if (target_value == INT_MAX)
+		return (min_i);
+	return (target_i);
 }
 
 static bool	r_execution(t_stack **a, t_stack **b, t_target best)

@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 10:49:30 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/17 17:50:26 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/18 18:28:52 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static bool	four_or_five_stack(t_stack **a, int min, int max, size_t count)
 	return (true);
 }
 
-static bool	over_five_stack(t_stack **a, size_t count)
+static bool	over_five_stack(t_stack **a, int min, size_t count)
 {
 	t_stack	*b;
 	size_t	i;
@@ -87,9 +87,8 @@ static bool	over_five_stack(t_stack **a, size_t count)
 	i = 0;
 	while (i < count - 3)
 	{
-		if (!pb(a, &b))
+		if (!initialize_pb(a, &b, count, &i))
 			return (false);
-		i++;
 	}
 	if (!three_stack(a, find_min(*a), find_max(*a)))
 		return (false);
@@ -99,7 +98,7 @@ static bool	over_five_stack(t_stack **a, size_t count)
 			return (false);
 		i--;
 	}
-	return (true);
+	return (bring_min_to_top(a, min, count));
 }
 
 bool	push_swap(t_stack **a, int min, int max, size_t count)
@@ -112,5 +111,5 @@ bool	push_swap(t_stack **a, int min, int max, size_t count)
 		return (three_stack(a, min, max));
 	if (count <= 5)
 		return (four_or_five_stack(a, min, max, count));
-	return (over_five_stack(a, count));
+	return (over_five_stack(a, min, count));
 }

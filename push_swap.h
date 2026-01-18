@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 20:20:01 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/17 15:56:55 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/18 18:29:43 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ bool				initialize_stack_a(char *argv[], t_stack **a, int *min,
 // push_swap_util.c
 int					find_min(t_stack *a);
 int					find_max(t_stack *a);
+bool				initialize_pb(t_stack **a, t_stack **b, size_t count,
+						size_t *i);
 // push_swap.c
 bool				push_swap(t_stack **a, int min, int max, size_t count);
 // stack_control_a.c

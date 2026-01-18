@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 10:48:41 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/16 15:49:39 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/18 15:31:07 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ bool	pb(t_stack **a, t_stack **b)
 	*a = (*a)->next;
 	node->next = *b;
 	*b = node;
-	if (ft_printf("pa\n") < 0)
+	if (ft_printf("pb\n") < 0)
 		return (false);
 	return (true);
 }
