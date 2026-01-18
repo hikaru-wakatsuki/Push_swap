@@ -6,12 +6,12 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:42:35 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/18 19:10:08 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/18 12:03:52 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "push_swap.h"
+#include "../libft/libft.h"
+#include "../includes/push_swap.h"
 
 static t_target	initialize_turk(t_target cur)
 {

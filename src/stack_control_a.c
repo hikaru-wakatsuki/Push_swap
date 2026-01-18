@@ -1,65 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_control_b.c                                  :+:      :+:    :+:   */
+/*   stack_control_a.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 10:48:41 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/18 15:31:07 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/18 12:03:32 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "push_swap.h"
+#include "../libft/libft.h"
+#include "../includes/push_swap.h"
 
-bool	pb(t_stack **a, t_stack **b)
+bool	pa(t_stack **a, t_stack **b)
 {
 	t_stack	*node;
 
-	if (!a || !*a)
+	if (!b || !*b)
 		return (false);
-	node = *a;
-	*a = (*a)->next;
-	node->next = *b;
-	*b = node;
-	if (ft_printf("pb\n") < 0)
+	node = *b;
+	*b = (*b)->next;
+	node->next = *a;
+	*a = node;
+	if (ft_printf("pa\n") < 0)
 		return (false);
 	return (true);
 }
 
-bool	rb(t_stack **b)
+bool	ra(t_stack **a)
 {
 	t_stack	*first;
 	t_stack	*last;
 
-	first = *b;
-	*b = first->next;
+	first = *a;
+	*a = first->next;
 	first->next = NULL;
-	last = *b;
+	last = *a;
 	while (last->next)
 		last = last->next;
 	last->next = first;
-	if (ft_printf("rb\n") < 0)
+	if (ft_printf("ra\n") < 0)
 		return (false);
 	return (true);
 }
 
-bool	rrb(t_stack **b)
+bool	rra(t_stack **a)
 {
 	t_stack	*prev;
 	t_stack	*last;
 
-	last = *b;
+	last = *a;
 	while (last->next)
 	{
 		prev = last;
 		last = last->next;
 	}
 	prev->next = NULL;
-	last->next = *b;
-	*b = last;
-	if (ft_printf("rrb\n") < 0)
+	last->next = *a;
+	*a = last;
+	if (ft_printf("rra\n") < 0)
 		return (false);
 	return (true);
 }

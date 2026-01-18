@@ -6,12 +6,12 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 14:52:31 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/18 16:25:38 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/18 12:03:46 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "push_swap.h"
+#include "../libft/libft.h"
+#include "../includes/push_swap.h"
 
 size_t	target_a_index(t_stack *a, int b_value)
 {

@@ -6,12 +6,12 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:49:49 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/17 15:23:14 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/18 12:03:42 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "push_swap.h"
+#include "../libft/libft.h"
+#include "../includes/push_swap.h"
 
 bool	rr(t_stack **a, t_stack **b)
 {

@@ -6,18 +6,22 @@
 #    By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 19:20:27 by hwakatsu          #+#    #+#              #
-#    Updated: 2026/01/17 16:19:18 by hwakatsu         ###   ########.fr        #
+#    Updated: 2026/01/18 12:02:15 by hwakatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
-LIBFT = $(LIBFT_DIR)/libft.a
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
-INCDIR = .
 LIBFT_DIR = libft
+LIBFT = $(LIBFT_DIR)/libft.a
+
+INCDIR = includes
+
+DIR = src
+BONUS_DIR = checker
 
 SRCS =		check_atoi.c \
 			main_util.c \
@@ -30,6 +34,7 @@ SRCS =		check_atoi.c \
 			turk_sort_util.c \
 			turk_sort.c \
 
+SRCS := $(addprefix $(DIR)/, $(SRCS))
 OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)

@@ -6,12 +6,12 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 12:07:18 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/18 19:05:05 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/18 12:03:09 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "push_swap.h"
+#include "../libft/libft.h"
+#include "../includes/push_swap.h"
 
 static bool	initialize_push(t_stack **a, int value)
 {

@@ -6,12 +6,12 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 10:49:30 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/18 18:28:52 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/18 12:03:27 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "push_swap.h"
+#include "../libft/libft.h"
+#include "../includes/push_swap.h"
 
 static bool	two_stack(t_stack **a, int min)
 {

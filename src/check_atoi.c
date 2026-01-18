@@ -6,12 +6,12 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 20:43:29 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/18 18:52:14 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/18 12:03:00 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "push_swap.h"
+#include "../libft/libft.h"
+#include "../includes/push_swap.h"
 
 bool	check_atoi(const char *nptr)
 {

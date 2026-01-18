@@ -6,12 +6,12 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 21:57:10 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/18 19:04:41 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/18 12:03:14 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "push_swap.h"
+#include "../libft/libft.h"
+#include "../includes/push_swap.h"
 
 static void	output_error(void)
 {

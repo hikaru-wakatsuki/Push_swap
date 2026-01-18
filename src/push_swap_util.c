@@ -6,12 +6,12 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 16:34:15 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/18 18:30:30 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/18 12:03:22 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "push_swap.h"
+#include "../libft/libft.h"
+#include "../includes/push_swap.h"
 
 int	find_min(t_stack *a)
 {
