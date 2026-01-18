@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 21:57:10 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/18 18:47:14 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/18 19:04:41 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static size_t	count_num(char *argv[])
 	count = 0;
 	i = 1;
 	while (argv[i])
-		count += count_words(argv[i++], ' ');
+		count += ft_count_words(argv[i++], ' ');
 	return (count);
 }
 

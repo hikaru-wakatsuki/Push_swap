@@ -6,13 +6,13 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 07:00:31 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/12/25 07:04:01 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/18 19:02:59 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	count_words(char const *s, char const c)
+size_t	ft_count_words(char const *s, char const c)
 {
 	size_t	count;
 	size_t	n;

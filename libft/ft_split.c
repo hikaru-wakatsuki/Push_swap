@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/18 17:14:31 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/12/25 07:01:54 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/18 19:05:34 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	**ft_split(char const *s, char c)
 	size_t	n;
 	size_t	to_index;
 
-	to_split = (char **)malloc(sizeof(char *) * (count_words(s, c) + 1));
+	to_split = (char **)malloc(sizeof(char *) * (ft_count_words(s, c) + 1));
 	if (!to_split)
 		return (NULL);
 	n = 0;

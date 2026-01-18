@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 03:42:20 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/17 16:05:24 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/18 19:03:16 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 						void (*del)(void *));
 char				*ft_strndup(const char *s, size_t n);
-size_t				count_words(char const *s, char const c);
+size_t				ft_count_words(char const *s, char const c);
 // get_next_line_utils_bonus.c
 char				*strjoin_and_free(char *s1, char *s2);
 t_gnl				*get_node(int fd, t_gnl **head);
