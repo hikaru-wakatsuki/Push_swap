@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 12:07:18 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/19 21:33:00 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/19 22:02:03 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ static bool	split_and_initialize(char *str, t_stack **a, int *min, int *max)
 		if (!initialize_and_find_minmax(tmp[i++], a, min, max))
 		{
 			split_free(tmp);
-			stack_free(a);
 			return (false);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 20:43:01 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/19 20:46:54 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/19 22:26:37 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,29 @@ bool	input_and_control(t_stack **a, t_stack **b, size_t count)
 	return (true);
 }
 
-bool	checker(t_stack *a, t_stack *b, size_t count)
+bool	checker(t_stack **a, t_stack **b, size_t count)
 {
 	size_t	i;
+	t_stack	*cur;
 
 	i = 1;
-	while (a->next)
+	cur = *a;
+	while (cur->next)
 	{
-		if (a->value > a->next->value)
+		if (cur->value > cur->next->value)
+		{
+			stack_free(a);
+			stack_free(b);
 			return (false);
-		a = a->next;
+		}
+		cur = cur->next;
 		i++;
 	}
-	if (count != i || b != NULL)
+	stack_free(a);
+	if (count != i || *b != NULL)
+	{
+		stack_free(b);
 		return (false);
+	}
 	return (true);
 }

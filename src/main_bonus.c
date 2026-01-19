@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 12:12:56 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/19 20:48:00 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/19 22:26:56 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 #include "../includes/push_swap.h"
 #include "../libft/libft.h"
 
-static void	output_error(void)
+static void	output_error(t_stack **a, t_stack **b)
 {
+	stack_free(a);
+	stack_free(b);
 	ft_printf("Error\n");
 }
 
@@ -82,19 +84,19 @@ int	main(int argc, char *argv[])
 	if (argc > 1)
 	{
 		if (!error_check(argv))
-			return (output_error(), 1);
+			return (ft_printf("Error\n"), 1);
 		count = count_num(argv);
 		a = NULL;
 		b = NULL;
 		if (!initialize_stack_a(argv, &a, &min, &max))
-			return (output_error(), 1);
+			return (output_error(&a, &b), 1);
 		if (!check_duplication(a))
-			return (output_error(), 1);
+			return (output_error(&a, &b), 1);
 		if (!input_and_control(&a, &b, count))
-			return (output_error(), 1);
-		if (!checker(a, b, count))
-			return (ft_printf("KO\n"));
-		return (ft_printf("OK\n"));
+			return (output_error(&a, &b), 1);
+		if (!checker(&a, &b, count))
+			return (ft_printf("KO\n"), 1);
+		return (ft_printf("OK\n"), 0);
 	}
 	return (0);
 }

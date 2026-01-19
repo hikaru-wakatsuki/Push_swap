@@ -6,15 +6,16 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 21:57:10 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/18 12:03:14 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/19 22:15:32 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../includes/push_swap.h"
 
-static void	output_error(void)
+static void	output_error(t_stack **a)
 {
+	stack_free(a);
 	ft_printf("Error\n");
 }
 
@@ -80,15 +81,16 @@ int	main(int argc, char *argv[])
 	if (argc > 1)
 	{
 		if (!error_check(argv))
-			return (output_error(), 1);
+			return (ft_printf("Error\n"), 1);
 		count = count_num(argv);
 		a = NULL;
 		if (!initialize_stack_a(argv, &a, &min, &max))
-			return (output_error(), 1);
+			return (output_error(&a), 1);
 		if (!check_duplication(a))
-			return (output_error(), 1);
+			return (output_error(&a), 1);
 		if (!push_swap(&a, min, max, count))
-			return (output_error(), 1);
+			return (output_error(&a), 1);
+		stack_free(&a);
 	}
 	return (0);
 }
