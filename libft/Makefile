@@ -6,7 +6,7 @@
 #    By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 21:01:17 by hwakatsu          #+#    #+#              #
-#    Updated: 2026/01/15 19:03:59 by hwakatsu         ###   ########.fr        #
+#    Updated: 2026/01/19 18:04:18 by hwakatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ SRCS =	ft_isalpha.c \
 		ft_toupper.c \
 		ft_tolower.c \
 		ft_strchr.c \
+		ft_strcmp.c \
 		ft_strrchr.c \
 		ft_strncmp.c \
 		ft_memchr.c \

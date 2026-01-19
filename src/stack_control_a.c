@@ -6,12 +6,20 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 10:48:41 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/18 12:03:32 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/19 16:52:09 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../includes/push_swap.h"
+
+bool	sa(t_stack **a)
+{
+	if (!a || !*a || !(*a)->next)
+		return (false);
+	ft_swap(&((*a)->value), &((*a)->next->value));
+	return (true);
+}
 
 bool	pa(t_stack **a, t_stack **b)
 {
@@ -23,8 +31,6 @@ bool	pa(t_stack **a, t_stack **b)
 	*b = (*b)->next;
 	node->next = *a;
 	*a = node;
-	if (ft_printf("pa\n") < 0)
-		return (false);
 	return (true);
 }
 
@@ -33,6 +39,8 @@ bool	ra(t_stack **a)
 	t_stack	*first;
 	t_stack	*last;
 
+	if (!a || !*a || !(*a)->next)
+		return (false);
 	first = *a;
 	*a = first->next;
 	first->next = NULL;
@@ -40,8 +48,6 @@ bool	ra(t_stack **a)
 	while (last->next)
 		last = last->next;
 	last->next = first;
-	if (ft_printf("ra\n") < 0)
-		return (false);
 	return (true);
 }
 
@@ -50,6 +56,9 @@ bool	rra(t_stack **a)
 	t_stack	*prev;
 	t_stack	*last;
 
+	if (!a || !*a || !(*a)->next)
+		return (false);
+	prev = NULL;
 	last = *a;
 	while (last->next)
 	{
@@ -59,7 +68,5 @@ bool	rra(t_stack **a)
 	prev->next = NULL;
 	last->next = *a;
 	*a = last;
-	if (ft_printf("rra\n") < 0)
-		return (false);
 	return (true);
 }

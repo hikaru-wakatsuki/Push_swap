@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 16:34:15 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/18 12:03:22 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/19 19:30:23 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,21 @@ static int	find_median(t_stack *a, size_t count)
 	return (a->value);
 }
 
-bool	initialize_pb(t_stack **a, t_stack **b, size_t count, size_t *i)
+bool	initialize_pb(t_stack **a, t_stack **b, size_t *count, size_t *i)
 {
 	int	median;
 
-	median = find_median(*a, count);
+	median = find_median(*a, *count);
 	if ((*a)->value <= median)
 	{
-		if (!pb(a, b))
+		if (!print_and_control(a, b, "pb"))
 			return (false);
 		(*i)++;
+		(*count)--;
 	}
 	else
 	{
-		if (!ra(a))
+		if (!print_and_control(a, b, "ra"))
 			return (false);
 	}
 	return (true);

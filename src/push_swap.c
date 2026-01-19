@@ -6,110 +6,96 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 10:49:30 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/18 12:03:27 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/19 19:29:44 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../includes/push_swap.h"
 
-static bool	two_stack(t_stack **a, int min)
+static bool	two_stack(t_stack **a, t_stack **b, int min)
 {
 	if (min == (*a)->value)
 		return (true);
 	else
-	{
-		ft_swap(&((*a)->value), &((*a)->next->value));
-		if (ft_printf("sa\n") < 0)
-			return (false);
-	}
-	return (true);
+		return (print_and_control(a, b, "sa"));
 }
 
-static bool	three_stack(t_stack **a, int min, int max)
+static bool	three_stack(t_stack **a, t_stack **b, int min, int max)
 {
 	if ((*a)->value == max)
 	{
-		if (!ra(a))
+		if (!print_and_control(a, b, "ra"))
 			return (false);
-		if (!two_stack(a, min))
-			return (false);
+		return (two_stack(a, b, min));
 	}
 	else if ((*a)->next->value == max)
 	{
-		if (!rra(a))
+		if (!print_and_control(a, b, "rra"))
 			return (false);
-		if (!two_stack(a, min))
-			return (false);
+		return (two_stack(a, b, min));
 	}
 	else
-	{
-		if (!two_stack(a, min))
-			return (false);
-	}
-	return (true);
+		return (two_stack(a, b, min));
 }
 
-static bool	four_or_five_stack(t_stack **a, int min, int max, size_t count)
+static bool	four_or_five_stack(t_stack **a, t_stack **b, size_t count)
 {
-	t_stack	*b;
-
-	b = NULL;
-	if (!bring_min_to_top(a, min, count))
+	if (!bring_min_to_top(a, b, find_min(*a), count))
 		return (false);
-	if (!pb(a, &b))
+	if (!print_and_control(a, b, "pb"))
 		return (false);
 	if (count == 5)
 	{
-		if (!bring_min_to_top(a, find_min(*a), count - 1))
+		if (!bring_min_to_top(a, b, find_min(*a), count - 1))
 			return (false);
-		if (!pb(a, &b))
+		if (!print_and_control(a, b, "pb"))
 			return (false);
 	}
-	if (!three_stack(a, find_min(*a), max))
+	if (!three_stack(a, b, find_min(*a), find_max(*a)))
 		return (false);
-	if (!pa(a, &b))
+	if (!print_and_control(a, b, "pa"))
 		return (false);
 	if (count == 5)
-	{
-		if (!pa(a, &b))
-			return (false);
-	}
+		return (print_and_control(a, b, "pa"));
 	return (true);
 }
 
-static bool	over_five_stack(t_stack **a, int min, size_t count)
+static bool	over_five_stack(t_stack **a, t_stack **b, int min, size_t count)
 {
-	t_stack	*b;
 	size_t	i;
+	size_t	tmp;
 
-	b = NULL;
 	i = 0;
+	tmp = count;
 	while (i < count - 3)
 	{
-		if (!initialize_pb(a, &b, count, &i))
+		if (!initialize_pb(a, b, &tmp, &i))
 			return (false);
 	}
-	if (!three_stack(a, find_min(*a), find_max(*a)))
+	if (!three_stack(a, b, find_min(*a), find_max(*a)))
 		return (false);
 	while (i > 0)
 	{
-		if (!turk_sort(a, &b, count - i, i))
+		if (!turk_sort(a, b, count - i, i))
 			return (false);
 		i--;
 	}
-	return (bring_min_to_top(a, min, count));
+	return (bring_min_to_top(a, b, min, count));
 }
 
 bool	push_swap(t_stack **a, int min, int max, size_t count)
 {
+	t_stack	*b;
+
+	b = NULL;
 	if (count == 1)
 		return (true);
 	if (count == 2)
-		return (two_stack(a, min));
+		return (two_stack(a, &b, min));
 	if (count == 3)
-		return (three_stack(a, min, max));
+		return (three_stack(a, &b, min, max));
 	if (count <= 5)
-		return (four_or_five_stack(a, min, max, count));
-	return (over_five_stack(a, min, count));
+		return (four_or_five_stack(a, &b, count));
+	return (over_five_stack(a, &b, min, count));
 }

@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 14:52:31 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/18 12:03:46 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/19 19:23:22 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,17 @@ static bool	r_execution(t_stack **a, t_stack **b, t_target best)
 {
 	while (best.rr-- > 0)
 	{
-		if (!rr(a, b))
+		if (!print_and_control(a, b, "rr"))
 			return (false);
 	}
 	while (best.ra-- > 0)
 	{
-		if (!ra(a))
+		if (!print_and_control(a, b, "ra"))
 			return (false);
 	}
 	while (best.rb-- > 0)
 	{
-		if (!rb(b))
+		if (!print_and_control(a, b, "rb"))
 			return (false);
 	}
 	return (true);
@@ -66,17 +66,17 @@ static bool	rr_execution(t_stack **a, t_stack **b, t_target best)
 {
 	while (best.rrr-- > 0)
 	{
-		if (!rrr(a, b))
+		if (!print_and_control(a, b, "rrr"))
 			return (false);
 	}
 	while (best.rra-- > 0)
 	{
-		if (!rra(a))
+		if (!print_and_control(a, b, "rra"))
 			return (false);
 	}
 	while (best.rrb-- > 0)
 	{
-		if (!rrb(b))
+		if (!print_and_control(a, b, "rrb"))
 			return (false);
 	}
 	return (true);
@@ -88,7 +88,7 @@ bool	turk_execution(t_stack **a, t_stack **b, t_target best)
 		return (false);
 	if (!rr_execution(a, b, best))
 		return (false);
-	if (!pa(a, b))
+	if (!print_and_control(a, b, "pa"))
 		return (false);
 	return (true);
 }

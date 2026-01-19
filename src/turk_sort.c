@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/16 17:42:35 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/18 12:03:52 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/19 19:22:49 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,14 @@ static t_target	rr_cal(t_target cur, size_t a_count, size_t b_count)
 static t_target	turk_cal(t_target cur, size_t a_count, size_t b_count)
 {
 	cur = initialize_turk(cur);
+	if (b_count < 2)
+	{
+		if (cur.a_index <= a_count / 2)
+			cur.ra = cur.a_index;
+		else
+			cur.rra = a_count - cur.a_index;
+		return (cur);
+	}
 	if (cur.a_index <= a_count / 2 && cur.b_index <= b_count / 2)
 		return (r_cal(cur));
 	if (cur.a_index >= a_count / 2 && cur.b_index >= b_count / 2)
