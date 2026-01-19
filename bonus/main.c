@@ -6,12 +6,13 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 12:12:56 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/18 12:14:56 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/19 20:48:00 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
+#include "checker_bonus.h"
 #include "../includes/push_swap.h"
+#include "../libft/libft.h"
 
 static void	output_error(void)
 {
@@ -43,7 +44,7 @@ static bool	error_check(char *argv[])
 		while (argv[i][j])
 		{
 			if (!(ft_isdigit(argv[i][j]) || ft_isspace(argv[i][j])
-				|| argv[i][j] == '-'))
+					|| argv[i][j] == '-'))
 				return (false);
 			j++;
 		}
@@ -74,6 +75,7 @@ int	main(int argc, char *argv[])
 {
 	size_t	count;
 	t_stack	*a;
+	t_stack	*b;
 	int		min;
 	int		max;
 
@@ -83,12 +85,16 @@ int	main(int argc, char *argv[])
 			return (output_error(), 1);
 		count = count_num(argv);
 		a = NULL;
+		b = NULL;
 		if (!initialize_stack_a(argv, &a, &min, &max))
 			return (output_error(), 1);
 		if (!check_duplication(a))
 			return (output_error(), 1);
-		if (!push_swap(&a, min, max, count))
+		if (!input_and_control(&a, &b, count))
 			return (output_error(), 1);
+		if (!checker(a, b, count))
+			return (ft_printf("KO\n"));
+		return (ft_printf("OK\n"));
 	}
 	return (0);
 }

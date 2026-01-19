@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:49:49 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/19 18:05:00 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/19 19:49:52 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ bool	bring_min_to_top(t_stack **a, t_stack **b, int min, size_t count)
 	return (true);
 }
 
-static bool	stack_control(t_stack **a, t_stack **b, char *op)
+bool	stack_control(t_stack **a, t_stack **b, char *op)
 {
 	if (ft_strcmp(op, "sa") == 0)
 		return (sa(a));

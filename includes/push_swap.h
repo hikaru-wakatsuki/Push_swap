@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 20:20:01 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/19 19:29:58 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/19 20:47:27 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ bool				rr(t_stack **a, t_stack **b);
 bool				rrr(t_stack **a, t_stack **b);
 bool				bring_min_to_top(t_stack **a, t_stack **b, int min,
 						size_t count);
+bool				stack_control(t_stack **a, t_stack **b, char *op);
 bool				print_and_control(t_stack **a, t_stack **b, char *op);
 // turk_sort_util.c
 size_t				target_a_index(t_stack *a, int b_value);
@@ -65,5 +66,4 @@ bool				turk_execution(t_stack **a, t_stack **b, t_target best);
 // turk_sort.c
 bool				turk_sort(t_stack **a, t_stack **b, size_t a_count,
 						size_t b_count);
-
 #endif
