@@ -6,7 +6,7 @@
 #    By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 19:20:27 by hwakatsu          #+#    #+#              #
-#    Updated: 2026/01/19 21:26:33 by hwakatsu         ###   ########.fr        #
+#    Updated: 2026/01/19 21:46:51 by hwakatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,8 @@ LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 INCDIR = includes
-B_INCDIR = bonus
 
 DIR = src
-B_DIR = bonus
 
 SRCS =		main_util.c \
 			main_util2.c \
@@ -47,7 +45,7 @@ B_SRCS =	checker_bonus.c \
 SRCS := $(addprefix $(DIR)/, $(SRCS))
 OBJS = $(SRCS:.c=.o)
 
-B_SRCS := $(addprefix $(B_DIR)/, $(B_SRCS))
+B_SRCS := $(addprefix $(DIR)/, $(B_SRCS))
 B_OBJS = $(B_SRCS:.c=.o)
 
 all: $(NAME)
@@ -63,7 +61,7 @@ $(B_NAME): $(B_OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(B_OBJS) $(LIBFT) -o $(B_NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) -I $(INCDIR) -I $(B_INCDIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I $(INCDIR) -c $< -o $@
 
 clean:
 	rm -f $(OBJS) $(B_OBJS)

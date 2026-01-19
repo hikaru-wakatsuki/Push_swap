@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 16:34:15 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/19 19:30:23 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/19 21:54:09 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,14 @@ bool	initialize_pb(t_stack **a, t_stack **b, size_t *count, size_t *i)
 	median = find_median(*a, *count);
 	if ((*a)->value <= median)
 	{
-		if (!print_and_control(a, b, "pb"))
+		if (!print_and_control(a, b, "pb\n"))
 			return (false);
 		(*i)++;
 		(*count)--;
 	}
 	else
 	{
-		if (!print_and_control(a, b, "ra"))
+		if (!print_and_control(a, b, "ra\n"))
 			return (false);
 	}
 	return (true);
