@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_atoi.c                                       :+:      :+:    :+:   */
+/*   main_util2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 20:43:29 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/18 12:03:00 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/19 21:33:42 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,16 @@ bool	check_atoi(const char *nptr)
 	if (nbr < INT_MIN || INT_MAX < nbr)
 		return (false);
 	return (true);
+}
+
+void	stack_free(t_stack **a)
+{
+	t_stack	*tmp;
+
+	while (*a)
+	{
+		tmp = (*a)->next;
+		free(*a);
+		*a = tmp;
+	}
 }

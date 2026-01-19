@@ -6,12 +6,14 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 20:20:01 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/19 20:47:27 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/19 21:34:28 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# include "../libft/libft.h"
 
 typedef struct s_stack
 {
@@ -31,11 +33,12 @@ typedef struct s_target
 	size_t			rrr;
 }					t_target;
 
-// check_atoi.c
-bool				check_atoi(const char *nptr);
 // main_util.c
 bool				initialize_stack_a(char *argv[], t_stack **a, int *min,
 						int *max);
+// main_util2.c
+bool				check_atoi(const char *nptr);
+void				stack_free(t_stack **a);
 // push_swap_util.c
 int					find_min(t_stack *a);
 int					find_max(t_stack *a);

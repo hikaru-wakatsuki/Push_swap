@@ -6,11 +6,12 @@
 #    By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/24 19:20:27 by hwakatsu          #+#    #+#              #
-#    Updated: 2026/01/18 12:02:15 by hwakatsu         ###   ########.fr        #
+#    Updated: 2026/01/19 21:26:33 by hwakatsu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = push_swap
+B_NAME = checker
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -19,12 +20,13 @@ LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 INCDIR = includes
+B_INCDIR = bonus
 
 DIR = src
-BONUS_DIR = checker
+B_DIR = bonus
 
-SRCS =		check_atoi.c \
-			main_util.c \
+SRCS =		main_util.c \
+			main_util2.c \
 			main.c \
 			push_swap_util.c \
 			push_swap.c \
@@ -34,11 +36,22 @@ SRCS =		check_atoi.c \
 			turk_sort_util.c \
 			turk_sort.c \
 
+B_SRCS =	checker_bonus.c \
+			main_util.c \
+			main_util2.c \
+			main_bonus.c \
+			stack_control_a.c \
+			stack_control_b.c \
+			stack_control.c \
+
 SRCS := $(addprefix $(DIR)/, $(SRCS))
 OBJS = $(SRCS:.c=.o)
 
+B_SRCS := $(addprefix $(B_DIR)/, $(B_SRCS))
+B_OBJS = $(B_SRCS:.c=.o)
+
 all: $(NAME)
-bonus: all
+bonus: $(B_NAME)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
@@ -46,15 +59,18 @@ $(LIBFT):
 $(NAME): $(OBJS) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
 
+$(B_NAME): $(B_OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(B_OBJS) $(LIBFT) -o $(B_NAME)
+
 %.o: %.c
-	$(CC) $(CFLAGS) -I $(INCDIR) -c $< -o $@
+	$(CC) $(CFLAGS) -I $(INCDIR) -I $(B_INCDIR) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
+	rm -f $(OBJS) $(B_OBJS)
 	make clean -C $(LIBFT_DIR)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(NAME) $(B_NAME)
 	make fclean -C $(LIBFT_DIR)
 
 re: fclean all
