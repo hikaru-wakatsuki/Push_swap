@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 20:20:01 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/19 21:34:28 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/20 13:21:49 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int					find_min(t_stack *a);
 int					find_max(t_stack *a);
 bool				initialize_pb(t_stack **a, t_stack **b, size_t *count,
 						size_t *i);
+bool				bring_min_to_top(t_stack **a, t_stack **b, int min,
+						size_t count);
 // push_swap.c
 bool				push_swap(t_stack **a, int min, int max, size_t count);
 // stack_control_a.c
@@ -57,10 +59,9 @@ bool				pb(t_stack **a, t_stack **b);
 bool				rb(t_stack **b);
 bool				rrb(t_stack **b);
 // stack_control.c
+bool				ss(t_stack **a, t_stack **b);
 bool				rr(t_stack **a, t_stack **b);
 bool				rrr(t_stack **a, t_stack **b);
-bool				bring_min_to_top(t_stack **a, t_stack **b, int min,
-						size_t count);
 bool				stack_control(t_stack **a, t_stack **b, char *op);
 bool				print_and_control(t_stack **a, t_stack **b, char *op);
 // turk_sort_util.c

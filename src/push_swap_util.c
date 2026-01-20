@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/17 16:34:15 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/19 21:54:09 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/20 13:19:53 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,33 @@ bool	initialize_pb(t_stack **a, t_stack **b, size_t *count, size_t *i)
 	else
 	{
 		if (!print_and_control(a, b, "ra\n"))
+			return (false);
+	}
+	return (true);
+}
+
+bool	bring_min_to_top(t_stack **a, t_stack **b, int min, size_t count)
+{
+	size_t	i;
+	t_stack	*cur;
+	char	*op;
+
+	if (!a || !*a)
+		return (false);
+	i = 0;
+	cur = *a;
+	while (cur && cur->value != min)
+	{
+		cur = cur->next;
+		i++;
+	}
+	if (i <= count / 2)
+		op = "ra\n";
+	else
+		op = "rra\n";
+	while ((*a)->value != min)
+	{
+		if (!print_and_control(a, b, op))
 			return (false);
 	}
 	return (true);

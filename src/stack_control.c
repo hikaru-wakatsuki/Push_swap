@@ -6,12 +6,23 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:49:49 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/19 21:52:33 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/20 13:20:41 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../includes/push_swap.h"
+
+bool	ss(t_stack **a, t_stack **b)
+{
+	if (!a || !*a || !(*a)->next)
+		return (false);
+	if (!b || !*b || !(*b)->next)
+		return (false);
+	sa(a);
+	sb(b);
+	return (true);
+}
 
 bool	rr(t_stack **a, t_stack **b)
 {
@@ -35,39 +46,14 @@ bool	rrr(t_stack **a, t_stack **b)
 	return (true);
 }
 
-bool	bring_min_to_top(t_stack **a, t_stack **b, int min, size_t count)
-{
-	size_t	i;
-	t_stack	*cur;
-	char	*op;
-
-	if (!a || !*a)
-		return (false);
-	i = 0;
-	cur = *a;
-	while (cur && cur->value != min)
-	{
-		cur = cur->next;
-		i++;
-	}
-	if (i <= count / 2)
-		op = "ra\n";
-	else
-		op = "rra\n";
-	while ((*a)->value != min)
-	{
-		if (!print_and_control(a, b, op))
-			return (false);
-	}
-	return (true);
-}
-
 bool	stack_control(t_stack **a, t_stack **b, char *op)
 {
 	if (ft_strcmp(op, "sa\n") == 0)
 		return (sa(a));
 	if (ft_strcmp(op, "sb\n") == 0)
 		return (sb(b));
+	if (ft_strcmp(op, "ss\n") == 0)
+		return (ss(a, b));
 	if (ft_strcmp(op, "pa\n") == 0)
 		return (pa(a, b));
 	if (ft_strcmp(op, "pb\n") == 0)
