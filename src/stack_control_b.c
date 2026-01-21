@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 10:48:41 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/19 16:51:42 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/21 19:50:58 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 bool	sb(t_stack **b)
 {
 	if (!b || !*b || !(*b)->next)
-		return (false);
+		return (true);
 	ft_swap(&((*b)->value), &((*b)->next->value));
 	return (true);
 }
@@ -26,7 +26,7 @@ bool	pb(t_stack **a, t_stack **b)
 	t_stack	*node;
 
 	if (!a || !*a)
-		return (false);
+		return (true);
 	node = *a;
 	*a = (*a)->next;
 	node->next = *b;
@@ -40,7 +40,7 @@ bool	rb(t_stack **b)
 	t_stack	*last;
 
 	if (!b || !*b || !(*b)->next)
-		return (false);
+		return (true);
 	first = *b;
 	*b = first->next;
 	first->next = NULL;
@@ -57,7 +57,7 @@ bool	rrb(t_stack **b)
 	t_stack	*last;
 
 	if (!b || !*b || !(*b)->next)
-		return (false);
+		return (true);
 	prev = NULL;
 	last = *b;
 	while (last->next)

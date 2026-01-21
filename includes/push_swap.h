@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 20:20:01 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/20 13:21:49 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/21 19:53:30 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ bool				initialize_stack_a(char *argv[], t_stack **a, int *min,
 // main_util2.c
 bool				check_atoi(const char *nptr);
 void				stack_free(t_stack **a);
+bool				is_sorted(t_stack *a);
 // push_swap_util.c
 int					find_min(t_stack *a);
 int					find_max(t_stack *a);

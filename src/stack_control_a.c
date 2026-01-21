@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 10:48:41 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/19 16:52:09 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/21 19:53:51 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 bool	sa(t_stack **a)
 {
 	if (!a || !*a || !(*a)->next)
-		return (false);
+		return (true);
 	ft_swap(&((*a)->value), &((*a)->next->value));
 	return (true);
 }
@@ -26,7 +26,7 @@ bool	pa(t_stack **a, t_stack **b)
 	t_stack	*node;
 
 	if (!b || !*b)
-		return (false);
+		return (true);
 	node = *b;
 	*b = (*b)->next;
 	node->next = *a;
@@ -40,7 +40,7 @@ bool	ra(t_stack **a)
 	t_stack	*last;
 
 	if (!a || !*a || !(*a)->next)
-		return (false);
+		return (true);
 	first = *a;
 	*a = first->next;
 	first->next = NULL;
@@ -57,7 +57,7 @@ bool	rra(t_stack **a)
 	t_stack	*last;
 
 	if (!a || !*a || !(*a)->next)
-		return (false);
+		return (true);
 	prev = NULL;
 	last = *a;
 	while (last->next)

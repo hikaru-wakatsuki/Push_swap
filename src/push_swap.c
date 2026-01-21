@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 10:49:30 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/21 15:28:24 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/21 19:31:32 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ bool	push_swap(t_stack **a, int min, int max, size_t count)
 	t_stack	*b;
 
 	b = NULL;
-	if (count == 1)
+	if (count == 1 || is_sorted(*a))
 		return (true);
 	if (count == 2)
 		return (two_stack(a, &b, min));

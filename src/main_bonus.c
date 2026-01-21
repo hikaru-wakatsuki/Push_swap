@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 12:12:56 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/21 04:56:43 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/21 19:36:57 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	exit_error(t_stack **a, t_stack **b)
 {
 	stack_free(a);
 	stack_free(b);
-	ft_printf("Error\n");
+	write(2, "Error\n", 6);
 	exit(1);
 }
 
@@ -84,11 +84,11 @@ int	main(int argc, char *argv[])
 
 	if (argc > 1)
 	{
+		a = NULL;
+		b = NULL;
 		if (!error_check(argv))
 			exit_error(&a, &b);
 		count = count_num(argv);
-		a = NULL;
-		b = NULL;
 		if (!initialize_stack_a(argv, &a, &min, &max))
 			exit_error(&a, &b);
 		if (!check_duplication(a))
@@ -100,5 +100,5 @@ int	main(int argc, char *argv[])
 		else
 			ft_printf("KO\n");
 	}
-	exit(0);
+	return (0);
 }

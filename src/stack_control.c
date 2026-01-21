@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:49:49 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/21 15:30:31 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/21 19:50:39 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,6 @@
 
 bool	ss(t_stack **a, t_stack **b)
 {
-	if (!a || !*a || !(*a)->next)
-		return (false);
-	if (!b || !*b || !(*b)->next)
-		return (false);
 	sa(a);
 	sb(b);
 	return (true);
@@ -26,10 +22,6 @@ bool	ss(t_stack **a, t_stack **b)
 
 bool	rr(t_stack **a, t_stack **b)
 {
-	if (!a || !*a || !(*a)->next)
-		return (false);
-	if (!b || !*b || !(*b)->next)
-		return (false);
 	ra(a);
 	rb(b);
 	return (true);
@@ -37,10 +29,6 @@ bool	rr(t_stack **a, t_stack **b)
 
 bool	rrr(t_stack **a, t_stack **b)
 {
-	if (!a || !*a || !(*a)->next)
-		return (false);
-	if (!b || !*b || !(*b)->next)
-		return (false);
 	rra(a);
 	rrb(b);
 	return (true);

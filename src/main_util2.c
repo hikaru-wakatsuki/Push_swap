@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 20:43:29 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/19 21:33:42 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/21 19:30:03 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,17 @@ void	stack_free(t_stack **a)
 		free(*a);
 		*a = tmp;
 	}
+}
+
+bool	is_sorted(t_stack *a)
+{
+	if (!a)
+		return (true);
+	while (a->next)
+	{
+		if (a->value > a->next->value)
+			return (false);
+		a = a->next;
+	}
+	return (true);
 }
