@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/15 21:49:49 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/20 13:20:41 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/21 15:30:31 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,14 @@ bool	stack_control(t_stack **a, t_stack **b, char *op)
 bool	print_and_control(t_stack **a, t_stack **b, char *op)
 {
 	if (!stack_control(a, b, op))
+	{
+		stack_free(b);
 		return (false);
+	}
 	if (ft_printf("%s", op) < 0)
+	{
+		stack_free(b);
 		return (false);
+	}
 	return (true);
 }
