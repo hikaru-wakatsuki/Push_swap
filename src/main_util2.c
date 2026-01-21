@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 20:43:29 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/21 20:52:44 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/21 20:57:01 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ bool	check_atoi(const char *nptr)
 	if (*nptr && !ft_isspace(*nptr))
 		return (false);
 	nbr = nbr * sign;
-	if (nbr < INT_MIN || INT_MAX < nbr)
-		return (false);
-	return (true);
+	return (!(nbr < INT_MIN || INT_MAX < nbr));
 }
 
 void	stack_free(t_stack **a)
