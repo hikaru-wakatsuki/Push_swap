@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 20:43:01 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/21 20:18:18 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/21 20:19:30 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../includes/push_swap.h"
 #include "../libft/libft.h"
 
-bool	input_and_control(t_stack **a, t_stack **b, size_t count)
+bool	input_and_control(t_stack **a, t_stack **b)
 {
 	char	*line;
 
