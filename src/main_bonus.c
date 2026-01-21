@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/18 12:12:56 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/19 22:26:56 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/21 04:56:43 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 #include "../includes/push_swap.h"
 #include "../libft/libft.h"
 
-static void	output_error(t_stack **a, t_stack **b)
+static void	exit_error(t_stack **a, t_stack **b)
 {
 	stack_free(a);
 	stack_free(b);
 	ft_printf("Error\n");
+	exit(1);
 }
 
 static size_t	count_num(char *argv[])
@@ -84,19 +85,20 @@ int	main(int argc, char *argv[])
 	if (argc > 1)
 	{
 		if (!error_check(argv))
-			return (ft_printf("Error\n"), 1);
+			exit_error(&a, &b);
 		count = count_num(argv);
 		a = NULL;
 		b = NULL;
 		if (!initialize_stack_a(argv, &a, &min, &max))
-			return (output_error(&a, &b), 1);
+			exit_error(&a, &b);
 		if (!check_duplication(a))
-			return (output_error(&a, &b), 1);
+			exit_error(&a, &b);
 		if (!input_and_control(&a, &b, count))
-			return (output_error(&a, &b), 1);
-		if (!checker(&a, &b, count))
-			return (ft_printf("KO\n"), 1);
-		return (ft_printf("OK\n"), 0);
+			exit_error(&a, &b);
+		if (checker(&a, &b, count))
+			ft_printf("OK\n");
+		else
+			ft_printf("KO\n");
 	}
-	return (0);
+	exit(0);
 }
