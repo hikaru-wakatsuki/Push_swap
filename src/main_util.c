@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 12:07:18 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/19 22:02:03 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/21 21:03:46 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ bool	initialize_stack_a(char *argv[], t_stack **a, int *min, int *max)
 	*max = INT_MIN;
 	while (argv[i])
 	{
+		if (ft_count_words(argv[i], ' ') == 1)
+			return (false);
 		if (ft_count_words(argv[i], ' ') == 1)
 		{
 			if (!initialize_and_find_minmax(argv[i], a, min, max))
