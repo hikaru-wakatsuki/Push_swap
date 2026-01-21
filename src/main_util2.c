@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 20:43:29 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/21 19:30:03 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/21 20:28:44 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ bool	check_atoi(const char *nptr)
 	long	sign;
 	long	nbr;
 
-	while ((9 <= *nptr && *nptr <= 13) || (*nptr == ' '))
+	while (ft_isspace(*nptr))
 		nptr++;
 	sign = 1;
 	if (*nptr == '+' || *nptr == '-')
@@ -28,13 +28,13 @@ bool	check_atoi(const char *nptr)
 		nptr++;
 	}
 	nbr = 0;
-	while ('0' <= *nptr && *nptr <= '9')
+	while (ft_isdigit(*nptr))
 	{
 		nbr *= 10;
 		nbr += (long)(*nptr - '0');
 		nptr++;
 	}
-	if (*nptr != '\0' && !('0' <= *nptr && *nptr <= '9'))
+	if (*nptr != '\0' || !(ft_isdigit(*nptr)) || !(ft_isspace(*nptr)))
 		return (false);
 	nbr = nbr * sign;
 	if (nbr < INT_MIN || INT_MAX < nbr)
