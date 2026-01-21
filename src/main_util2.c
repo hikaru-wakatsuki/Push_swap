@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 20:43:29 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/21 20:31:50 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/21 20:43:06 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ bool	check_atoi(const char *nptr)
 	sign = 1;
 	if (*nptr == '+' || *nptr == '-')
 	{
-		if (*nptr == '-')
+		if (*(nptr++) == '-')
 			sign = -1;
-		nptr++;
 	}
+	if (!ft_isdigit(*nptr))
+		return (false);
 	nbr = 0;
 	while (ft_isdigit(*nptr))
 	{
 		nbr *= 10;
-		nbr += (long)(*nptr - '0');
-		nptr++;
+		nbr += (long)(*(nptr++) - '0');
 	}
 	if (*nptr != '\0' && !(ft_isspace(*nptr)))
 		return (false);
