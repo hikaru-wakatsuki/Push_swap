@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 20:43:01 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/21 20:19:30 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/22 13:46:58 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ bool	input_and_control(t_stack **a, t_stack **b)
 {
 	char	*line;
 
-	while (true)
+	line = NULL;
+	while (get_next_line(0, &line))
 	{
-		line = get_next_line(0);
 		if (!line)
 			return (true);
 		if (!stack_control(a, b, line))
@@ -30,7 +30,7 @@ bool	input_and_control(t_stack **a, t_stack **b)
 		}
 		free(line);
 	}
-	return (true);
+	return (false);
 }
 
 bool	checker(t_stack **a, t_stack **b, size_t count)

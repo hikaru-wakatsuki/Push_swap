@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 17:51:15 by hwakatsu          #+#    #+#             */
-/*   Updated: 2025/12/23 18:33:22 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/22 13:28:37 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ static char	*remain_content(char *content, bool *check)
 		return (free(content), NULL);
 	remain = (char *)malloc(sizeof(char) * (len - i + 1));
 	if (!remain)
-		return (*check = false, free(content), NULL);
+	{
+		*check = false;
+		return (free(content), NULL);
+	}
 	j = 0;
 	while (content[i])
 		remain[(j++)] = content[(i++)];
@@ -65,27 +68,26 @@ static char	*extract_line(char *content)
 	return (line);
 }
 
-static char	*read_until_newline(int fd, char *content)
+static bool	read_until_newline(int fd, char **content)
 {
 	char	*buf;
 	ssize_t	bytes;
 
 	buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buf)
-		return (free(content), NULL);
+		return (false);
 	bytes = 1;
-	while (!ft_strchr(content, '\n') && bytes > 0)
+	while (!ft_strchr(*content, '\n') && bytes > 0)
 	{
 		bytes = read(fd, buf, BUFFER_SIZE);
 		if (bytes < 0)
-			return (free(buf), free(content), NULL);
+			return (free(buf), false);
 		buf[bytes] = '\0';
-		content = strjoin_and_free(content, buf);
-		if (!content)
-			return (free(buf), NULL);
+		*content = strjoin_and_free(*content, buf);
+		if (!*content)
+			return (free(buf), false);
 	}
-	free(buf);
-	return (content);
+	return (free(buf), true);
 }
 
 static char	*content_initialize(char *content)
@@ -100,31 +102,31 @@ static char	*content_initialize(char *content)
 	return (content);
 }
 
-char	*get_next_line(int fd)
+bool	get_next_line(int fd, char **line)
 {
 	static t_gnl	*head;
 	t_gnl			*node;
-	char			*line;
 	bool			check;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (false);
 	node = get_node(fd, &head);
 	if (!node)
-		return (NULL);
+		return (false);
 	node->content = content_initialize(node->content);
 	if (!node->content)
-		return (remove_node(fd, &head), NULL);
-	node->content = read_until_newline(fd, node->content);
+		return (remove_node(fd, &head), false);
+	if (!read_until_newline(fd, &(node->content)))
+		return (remove_node(fd, &head), false);
 	if (!node->content)
-		return (remove_node(fd, &head), NULL);
-	line = extract_line(node->content);
-	if (!line)
-		return (remove_node(fd, &head), NULL);
+		return (remove_node(fd, &head), true);
+	*line = extract_line(node->content);
+	if (!*line)
+		return (remove_node(fd, &head), false);
 	node->content = remain_content(node->content, &check);
 	if (!node->content)
 		remove_node(fd, &head);
 	if (!check)
-		return (free(line), NULL);
-	return (line);
+		return (free(*line), false);
+	return (true);
 }
