@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 20:43:01 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/22 13:57:47 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/22 14:13:58 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ bool	input_and_control(t_stack **a, t_stack **b)
 			return (false);
 		}
 		free(line);
+		line = NULL;
 	}
 	return (false);
 }
