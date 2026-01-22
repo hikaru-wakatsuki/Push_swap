@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 03:42:20 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/22 13:30:48 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/22 14:11:45 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ size_t				ft_count_words(char const *s, char const c);
 char				*strjoin_and_free(char *s1, char *s2);
 t_gnl				*get_node(int fd, t_gnl **head);
 void				remove_node(int fd, t_gnl **head);
+bool				get_next_line_checker(char **line, bool check);
 // get_next_line_bonus.c
 bool				get_next_line(int fd, char **line);
 // space_zero_print.c

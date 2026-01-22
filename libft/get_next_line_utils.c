@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 17:52:40 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/17 16:03:01 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/22 14:11:08 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,16 @@ void	remove_node(int fd, t_gnl **head)
 		}
 		prev = cur;
 		cur = cur->next;
+	}
+}
+
+bool	get_next_line_checker(char **line, bool check)
+{
+	if (check)
+		return (true);
+	else
+	{
+		free (line);
+		return (false);
 	}
 }

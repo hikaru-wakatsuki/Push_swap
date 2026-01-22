@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 17:51:15 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/22 13:28:37 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/22 14:12:16 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ bool	get_next_line(int fd, char **line)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (false);
+	*line = NULL;
 	node = get_node(fd, &head);
 	if (!node)
 		return (false);
@@ -118,7 +119,7 @@ bool	get_next_line(int fd, char **line)
 		return (remove_node(fd, &head), false);
 	if (!read_until_newline(fd, &(node->content)))
 		return (remove_node(fd, &head), false);
-	if (!node->content)
+	if (!node->content || node->content[0] == '\0')
 		return (remove_node(fd, &head), true);
 	*line = extract_line(node->content);
 	if (!*line)
@@ -126,7 +127,5 @@ bool	get_next_line(int fd, char **line)
 	node->content = remain_content(node->content, &check);
 	if (!node->content)
 		remove_node(fd, &head);
-	if (!check)
-		return (free(*line), false);
-	return (true);
+	return (get_next_line_checker(line, check));
 }
