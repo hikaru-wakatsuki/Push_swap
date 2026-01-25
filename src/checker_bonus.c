@@ -6,7 +6,7 @@
 /*   By: hwakatsu <hwakatsu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/19 20:43:01 by hwakatsu          #+#    #+#             */
-/*   Updated: 2026/01/22 14:13:58 by hwakatsu         ###   ########.fr       */
+/*   Updated: 2026/01/23 19:01:36 by hwakatsu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,16 @@ bool	checker(t_stack **a, t_stack **b, size_t count)
 
 	i = 1;
 	if (!*a)
-		return (false);
+		return (ft_printf("KO\n") >= 0);
 	cur = *a;
 	while (cur->next)
 	{
 		if (cur->value > cur->next->value)
-		{
-			stack_free(a);
-			stack_free(b);
-			return (false);
-		}
+			return (ft_printf("KO\n") >= 0);
 		cur = cur->next;
 		i++;
 	}
-	stack_free(a);
 	if (count != i || *b != NULL)
-	{
-		stack_free(b);
-		return (false);
-	}
-	return (true);
+		return (ft_printf("KO\n") >= 0);
+	return (ft_printf("OK\n") >= 0);
 }
